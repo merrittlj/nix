@@ -19,10 +19,18 @@
     unzip
     zip
     yt-dlp
+    read-edid
 
     # GUI utils
     feh
     maim
+
+    # Xorg
+    ratpoison
+    xclip
+    xorg.xdpyinfo
+    autorandr
+    lightdm
 
     # Misc.
     home-manager

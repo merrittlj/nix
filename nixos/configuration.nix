@@ -21,4 +21,6 @@
   
   # This is complicated, don't change
   system.stateVersion = "24.05"; 
+
+  # boot.kernelParams = [ "nomodeset" ];
 }

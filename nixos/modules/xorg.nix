@@ -1,11 +1,15 @@
-{
+{ pkgs, ...}: {
   services.xserver = {
     enable = true;
-    autorun = false;
+    autorun = true;
     
     windowManager.ratpoison.enable = true; 
-    displayManager.startx.enable = true;
     xkb.layout = "us";
+
+    displayManager.lightdm = {
+      enable = true;
+    };
+    # startx.enable = true;
 
     videoDrivers = [ "nvidia" ];
   };

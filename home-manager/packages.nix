@@ -6,9 +6,8 @@
     discord
     kicad
     qutebrowser
-    
-    # WM
-    ratpoison
-    xclip
+    firefox
+    nitrogen
+    rpbar
   ];
 }
