@@ -8,6 +8,5 @@
     qutebrowser
     firefox
     nitrogen
-    rpbar
   ];
 }

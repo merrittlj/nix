@@ -23,4 +23,5 @@
   system.stateVersion = "24.05"; 
 
   # boot.kernelParams = [ "nomodeset" ];
+  hardware.enableAllFirmware = true;
 }

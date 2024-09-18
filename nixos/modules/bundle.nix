@@ -5,5 +5,6 @@
       ./doas.nix
       ./xorg.nix
       ./autorandr.nix
+      ./audio.nix
     ];
   }

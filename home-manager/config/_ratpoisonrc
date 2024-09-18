@@ -12,7 +12,7 @@ set bgcolor #353535
 set fgcolor #d7d7d7
 
 escape M-t
-bind t exec term
+bind t exec kitty
 bind n exec firefox
 bind h exec menu
 

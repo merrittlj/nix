@@ -34,6 +34,7 @@
 
     # Misc.
     home-manager
+    pavucontrol
   ];
   
   fonts.packages = with pkgs; [
