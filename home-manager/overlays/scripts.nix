@@ -58,18 +58,19 @@ final: prev:
   };
 
   # Background management
-  bgt = final.writeShellApplication {
-    name = "bgt";
+  bt = final.writeShellApplication {
+    name = "bt";
     runtimeInputs = with final; [ nitrogen gnugrep gnused ];
 
     text = ''
-  	  if [ "$2" = "s" ]; then
-        nitrogen --random "$WALLPAPERS_PATH" --set-zoom-fill --save
-      elif [ "$2" = "r" ]; then
-        rm "$(bg c)"
-  	    bg s
-  	  else
+      MODE="''${1:-default}"
+      if [ "$MODE" = "default" ]; then
         grep "file" ~/.config/nitrogen/bg-saved.cfg | sed "s/file=//"
+      elif [ "$MODE" = "s" ]; then
+        nitrogen --random "$WALLPAPERS_PATH" --set-zoom-fill --save
+      elif [ "$MODE" = "r" ]; then
+        rm "$(bt)"
+  	    bt s
   	  fi
     '';
   };

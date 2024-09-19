@@ -1,4 +1,5 @@
-exec nitrogen --random wallpapers/dharmx/cold/kym-mackinnon-KrrVNx8R640-unsplash.jpg --set-zoom-fill --save
+#exec nitrogen --random wallpapers/dharmx/cold/kym-mackinnon-KrrVNx8R640-unsplash.jpg --set-zoom-fill --save
+exec bt s
 exec /usr/bin/rpws init 4 -k
 
 set winname title

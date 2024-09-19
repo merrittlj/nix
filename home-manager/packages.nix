@@ -16,16 +16,7 @@
     rvh
     rv
     gr
-    bgt
+    bt
     #unzip-dir
-
-    (writeShellApplication {
-      name = "test22";
-
-      runtimeInputs = [ gnugrep ];
-      text = ''
-        grep test22
-      '';
-    })
   ];
 }
