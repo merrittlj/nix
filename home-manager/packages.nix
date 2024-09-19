@@ -1,4 +1,6 @@
-{ pkgs, ...}: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
     # Desktop
     kitty
@@ -8,5 +10,22 @@
     qutebrowser
     firefox
     nitrogen
+
+    rb
+    hm
+    rvh
+    rv
+    gr
+    bgt
+    #unzip-dir
+
+    (writeShellApplication {
+      name = "test22";
+
+      runtimeInputs = [ gnugrep ];
+      text = ''
+        grep test22
+      '';
+    })
   ];
 }

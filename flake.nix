@@ -22,7 +22,16 @@
 
 			homeConfigurations.lucas = home-manager.lib.homeManagerConfiguration {
 				# pkgs = nixpkgs.legacyPackages.${system};
-                                pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
+                pkgs = import nixpkgs { 
+                  inherit system;
+                  config.allowUnfree = true;
+                                  #overlays =
+                                  #  let
+                                #	  scriptsOverlay = (import ./home-manager/overlays/scripts.nix);
+                                #	in [
+                                #	  scriptsOverlay
+                                #	];
+                };
 				modules = [ ./home-manager/home.nix ];
 			};
 		};

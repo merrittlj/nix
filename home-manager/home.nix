@@ -1,9 +1,12 @@
 { config, pkgs, ... }: {
 	imports = [
-		./bash.nix
-                ./packages.nix
+        ./packages.nix
 		./modules/bundle.nix
 	];	
+
+        nixpkgs.overlays = [
+          (import ./overlays/scripts.nix)
+        ];
 
 	home = {
 		username = "lucas";
