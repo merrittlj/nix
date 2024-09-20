@@ -1,16 +1,14 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, username, nixvim, ... }: {
 	imports = [
         ./packages.nix
 		./modules/bundle.nix
+        nixvim.homeManagerModules.nixvim
 	];	
 
-        nixpkgs.overlays = [
-          (import ./overlays/scripts.nix)
-        ];
-
+    news.display = "silent";
 	home = {
-		username = "lucas";
-		homeDirectory = "/home/lucas";
+		username = "${username}";
+		homeDirectory = "/home/${username}";
 		stateVersion = "24.05";
                 
 		file = {

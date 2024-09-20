@@ -1,8 +1,9 @@
-  {
-    imports = [
-      ./bash.nix
-      ./git.nix
-      ./autorandr.nix
-      ./vim.nix
-    ];
-  }
+{
+  imports = [
+    ./bash.nix
+    ./git.nix
+    ./autorandr.nix
+    ./vim.nix
+    ./neovim.nix
+  ];
+}

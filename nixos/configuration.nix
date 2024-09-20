@@ -1,14 +1,14 @@
-{ inputs, ... }:
+{ inputs, hostname, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
       ./hardware-configuration.nix
       ./packages.nix
       ./modules/bundle.nix
   ];
   
   # Hostname
-  networking.hostName = "fibonacci";
+  networking.hostName = "${hostname}";
   
   # Time zone.
   time.timeZone = "America/Denver";
@@ -22,6 +22,5 @@
   # This is complicated, don't change
   system.stateVersion = "24.05"; 
 
-  # boot.kernelParams = [ "nomodeset" ];
   hardware.enableAllFirmware = true;
 }
