@@ -21,6 +21,7 @@
     zip
     yt-dlp
     read-edid
+    efibootmgr
 
     # GUI utils
     feh

@@ -6,5 +6,6 @@
       ./xorg.nix
       ./autorandr.nix
       ./audio.nix
+      ./wireless.nix
     ];
   }
