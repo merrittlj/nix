@@ -40,6 +40,7 @@
               lucas = home-manager.lib.homeManagerConfiguration {
                 pkgs = import nixpkgs { 
                   inherit system;
+                            config.allowUnfree = true;
 
                   overlays = 
 				    let

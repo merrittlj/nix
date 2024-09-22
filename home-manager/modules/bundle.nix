@@ -4,6 +4,6 @@
     ./git.nix
     ./autorandr.nix
     ./vim.nix
-    ./neovim.nix
+    #./neovim.nix
   ];
 }

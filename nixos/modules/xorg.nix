@@ -5,6 +5,7 @@
     
     windowManager.ratpoison.enable = true; 
     xkb.layout = "us";
+    xkb.variant = "dvp";
 
     displayManager.lightdm = {
       enable = true;

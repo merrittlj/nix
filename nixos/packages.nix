@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   environment.systemPackages = with pkgs; [
     # Development
