@@ -15,6 +15,6 @@ in
 
   ###### implementation
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.rpbar ];
+    environment.systemPackages = [ pkgs.rpbar ];
   };
 }

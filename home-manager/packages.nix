@@ -10,17 +10,5 @@
     qutebrowser
     firefox
     nitrogen
-
-    rb
-    hm
-    rvh
-    rv
-    gr
-    bt
-    battery
-    batterylife
-    batterye
-    #unzip-dir
-    rpbar
   ];
 }

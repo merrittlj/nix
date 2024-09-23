@@ -113,6 +113,32 @@ final: prev:
 	'';
   };
 
+  brightness-control = final.writeShellApplication {
+    name = "brightness-control";
+    runtimeInputs = [];
+
+    text = ''
+      brightnessControl="$1"
+      action="$2"
+      step="$3"
+
+      currentValue=$(cat "$brightnessControl")
+      newValue=0
+
+      if [ "$action" == "up" ]; then
+         newValue=$(("$currentValue" + "$step"))
+      elif [ "$action" == "down" ]; then
+         newValue=$(("$currentValue" - "$step"))
+      fi
+
+      if [ "$newValue" -lt 0 ]; then
+         newValue=0
+      fi
+
+      echo "$newValue" > "$brightnessControl"
+      currentValue=newValue
+	'';
+  };
 
   #unzip-dir = final.writeShellApplication {
   #  name = "unzip zip files in the current dir";

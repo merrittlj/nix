@@ -23,6 +23,7 @@
     read-edid
     efibootmgr
     bc
+    actkbd
 
     # GUI utils
     feh
@@ -34,6 +35,21 @@
     xorg.xdpyinfo
     autorandr
     lightdm
+
+    # Overlays
+    rb
+    hm
+    rvh
+    rv
+    gr
+    bt
+    battery
+    batterylife
+    batterye
+    brightness-control
+
+    rpbar
+
 
     # Misc.
     home-manager
