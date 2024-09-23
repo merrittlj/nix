@@ -33,7 +33,7 @@ bind g exec wpars
 # tell ratpoison to ignore rpbar
 unmanage rpbar
 # leave space for bars, 24 for desktop 39 for laptop
-set padding 0 0 0 24
+set padding 0 0 0 0
 # start rpbar 
 exec rpbar
 # hooks
