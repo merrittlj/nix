@@ -22,6 +22,7 @@
     yt-dlp
     read-edid
     efibootmgr
+    bc
 
     # GUI utils
     feh

@@ -13,8 +13,6 @@
             enable = true;
 	    mode = "1920x1080";
 	    position = "0x0";
-            rate = "60.00";
-            crtc = 0;
 	    rotate = "left";
 	  };
           
@@ -23,12 +21,24 @@
             enable = true;
 	    mode = "1920x1080";
 	    position = "1920x0";
-            rate = "71.91";
-            crtc = 1;
 	    primary = true;
 	  };
 	};
       };
+    "laptop" = {
+      fingerprint = {
+        DP-2 = "00ffffffffffff0006100fa00000000010150104a5211578026fb1a7554c9e250c505400000001010101010101010101010101010101ef8340a0b0083470302036004bcf1000001a000000fc00436f6c6f72204c43440a20202000000010000000000000000000000000000000000010000000000000000000000000000000e7";
+	  };
+	  config = {
+        DP-2 = {
+          enable = true;
+		  mode = "2880x1800";
+		  position = "0x0";
+		  primary = true;
+		  scale = { x = 1; y = 1; };
+		};
+	  };
+    };
     };
   };
 }
