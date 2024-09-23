@@ -4,6 +4,8 @@
     ./git.nix
     ./autorandr.nix
     ./vim.nix
-    ./neovim.nix
+    #./neovim.nix
+    ./rpbar.nix
+    ./custom/rpbar.nix
   ];
 }

@@ -40,13 +40,17 @@
               lucas = home-manager.lib.homeManagerConfiguration {
                 pkgs = import nixpkgs { 
                   inherit system;
+                  config.allowUnfree = true;
 
                   overlays = 
 				    let
 				      scriptsOverlay = (import ./home-manager/overlays/scripts.nix);
+                      rpbarOverlay = (import ./home-manager/overlays/rpbar.nix);
   			        in [
 				      scriptsOverlay
+					  rpbarOverlay
 				    ];
+                   
                 };
 
 				extraSpecialArgs = {

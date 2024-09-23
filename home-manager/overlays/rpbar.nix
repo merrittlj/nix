@@ -1,5 +1,4 @@
+final: prev:
 {
-  programs.rpbar = {
-    enable = true;
-  };
+  rpbar = final.callPackage ./packages/rpbar.nix { };
 }

@@ -1,6 +1,6 @@
 { pkgs, ... }:
-
 {
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # Desktop
     kitty
@@ -18,5 +18,6 @@
     gr
     bt
     #unzip-dir
+    rpbar
   ];
 }
