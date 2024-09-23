@@ -20,11 +20,16 @@
 			system = "x86_64-linux";
             username = "lucas";
 			hostname = "fibonacci";
+            overlays = [
+			    (import ./nixos/overlays/scripts.nix)
+                (import ./nixos/overlays/rpbar.nix)
+			];
+            pkgs = import nixpkgs { inherit overlays; };
 
 		in {
 			nixosConfigurations = {
 			  fibonacci = nixpkgs.lib.nixosSystem {
-			    inherit system;
+			    inherit system; inherit pkgs;
 
 				specialArgs = {
                   inherit username; inherit hostname;
@@ -38,20 +43,7 @@
 
 			homeConfigurations = {
               lucas = home-manager.lib.homeManagerConfiguration {
-                pkgs = import nixpkgs { 
-                  inherit system;
-                  config.allowUnfree = true;
-
-                  overlays = 
-				    let
-				      scriptsOverlay = (import ./home-manager/overlays/scripts.nix);
-                      rpbarOverlay = (import ./home-manager/overlays/rpbar.nix);
-  			        in [
-				      scriptsOverlay
-					  rpbarOverlay
-				    ];
-                   
-                };
+                inherit system; inherit pkgs;
 
 				extraSpecialArgs = {
                   inherit username; inherit hostname; inherit nixvim;

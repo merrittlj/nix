@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   security = {
     sudo.enable = false;
@@ -8,6 +9,9 @@
         keepEnv = true;
         persist = true;
       }];
+      extraConfig = ''
+        permit nopass :wheel as root cmd "${pkgs.brightness-control}/bin/brightness-control"
+	  '';
     };
   };
 }

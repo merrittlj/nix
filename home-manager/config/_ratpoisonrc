@@ -35,12 +35,12 @@ unmanage rpbar
 # leave space for bars, 24 for desktop 39 for laptop
 set padding 0 0 0 0
 # start rpbar 
-exec rpbar
+#exec rpbar
 # hooks
-addhook switchwin exec rpbarsend
-addhook switchframe exec rpbarsend
-addhook switchgroup exec rpbarsend
-addhook deletewindow exec rpbarsend
+#addhook switchwin exec rpbarsend
+#addhook switchframe exec rpbarsend
+#addhook switchgroup exec rpbarsend
+#addhook deletewindow exec rpbarsend
 # RP versions >= 1.4.6 (from the git repo) have these hooks.
-addhook titlechanged exec rpbarsend
-addhook newwindow exec rpbarsend
+#addhook titlechanged exec rpbarsend
+#addhook newwindow exec rpbarsend
