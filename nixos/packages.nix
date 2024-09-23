@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   environment.systemPackages = with pkgs; [
     # Development
@@ -20,6 +21,8 @@
     zip
     yt-dlp
     read-edid
+    efibootmgr
+    bc
 
     # GUI utils
     feh
