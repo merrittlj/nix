@@ -5,6 +5,8 @@
     
     windowManager.ratpoison.enable = true; 
     xkb.layout = "us";
+    xkb.variant = "dvp";
+    xkb.options = "ctrl:swapcaps";
 
     displayManager.lightdm = {
       enable = true;

@@ -1,4 +1,4 @@
-{ inputs, hostname, ... }:
+{ inputs, config, hostname, ... }:
 
 {
   imports = [
@@ -23,4 +23,6 @@
   system.stateVersion = "24.05"; 
 
   hardware.enableAllFirmware = true;
+
+  console.keyMap = "dvorak-programmer";
 }
