@@ -33,6 +33,10 @@ stdenv.mkDerivation (finalAttrs: {
 	chmod +x $out/bin/rpbar
 	chmod +x $out/bin/rpbarsend
   '';
+  
+   preConfigure = ''
+     export CFLAGS="$CFLAGS -DRPBAR_SCREEN=0"
+   '';
 
   meta = {
     homepage = "https://github.com/merrittlj/upgraded-rpbar";

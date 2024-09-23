@@ -20,6 +20,16 @@ final: prev:
       home-manager switch --flake "$FLAKE_PATH"
     '';
   };
+  
+  pb = final.writeShellApplication {
+    name = "pb";
+	runtimeInputs = with final; [ nix ];
+  
+    text = ''
+      nix-build -E let pkgs = import <nixpkgs> { }; in pkgs.callPackage ./default.nix {}
+	'';
+  };
+
 
   # Raven hardware project launch
   rvh = final.writeShellApplication {
@@ -74,6 +84,35 @@ final: prev:
   	  fi
     '';
   };
+
+  battery = final.writeShellApplication {
+    name = "battery";
+	runtimeInputs = with final; [ bc findutils ];
+
+	text = ''
+	  echo "$(echo "$(cat /sys/class/power_supply/BAT0/charge_now) / $(cat /sys/class/power_supply/BAT0/charge_full)" | bc -l) * 100" | bc -l | xargs printf %.2f
+	  echo
+	'';
+  };
+
+  batterylife = final.writeShellApplication {
+    name = "batterylife";
+	runtimeInputs = with final; [ bc ];
+
+	text = ''
+	  echo "$(cat /sys/class/power_supply/BAT0/charge_full) / $(cat /sys/class/power_supply/BAT0/charge_full_design)" | bc -l
+	'';
+  };
+
+  batterye = final.writeShellApplication {
+    name = "batterye";
+	runtimeInputs = with final; [ ratpoison ];
+
+	text = ''
+	  ratpoison -c "echo $(cat /sys/class/power_supply/BAT0/status) $(battery)%"
+	'';
+  };
+
 
   #unzip-dir = final.writeShellApplication {
   #  name = "unzip zip files in the current dir";

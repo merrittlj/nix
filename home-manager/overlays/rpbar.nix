@@ -1,4 +1,4 @@
 final: prev:
 {
-  rpbar = final.callPackage ./packages/rpbar.nix { };
+  rpbar = final.callPackage ./rpbar/default.nix { };
 }

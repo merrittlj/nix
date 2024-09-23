@@ -17,6 +17,9 @@
     rv
     gr
     bt
+    battery
+    batterylife
+    batterye
     #unzip-dir
     rpbar
   ];
