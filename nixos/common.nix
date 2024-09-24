@@ -2,7 +2,6 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
       ./packages.nix
       ./modules/bundle.nix
   ];
@@ -21,8 +20,4 @@
   
   # This is complicated, don't change
   system.stateVersion = "24.05"; 
-
-  hardware.enableAllFirmware = true;
-
-  console.keyMap = "dvorak-programmer";
 }

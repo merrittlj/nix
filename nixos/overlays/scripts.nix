@@ -7,7 +7,7 @@ final: prev:
     runtimeInputs = with final; [ nixos-rebuild ];
 
     text = ''
-      nixos-rebuild switch --flake "$FLAKE_PATH"
+      nixos-rebuild switch --flake "$FLAKE_PATH"#"$1"
     '';
   };
 
