@@ -1,0 +1,7 @@
+common:
+* setting rpbar w/ xsetroot service
+* rpbar screen/dotfile
+
+meyer:
+* git requiring authentication
+* firefox scaling
