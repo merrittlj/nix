@@ -3,6 +3,7 @@
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
 		home-manager = {
 			url = "github:nix-community/home-manager/release-24.05";
@@ -19,34 +20,48 @@
 		let
 			system = "x86_64-linux";
             username = "lucas";
-			hostname = "fibonacci";
             overlays = [
-			    (import ./nixos/overlays/scripts.nix)
-                (import ./nixos/overlays/rpbar.nix)
+			  (import ./nixos/overlays/scripts.nix)
+              (import ./nixos/overlays/rpbar.nix)
 			];
-            pkgs = import nixpkgs { inherit overlays; };
-
 		in {
 			nixosConfigurations = {
-			  fibonacci = nixpkgs.lib.nixosSystem {
-			    inherit system; inherit pkgs;
+			  mendeleev = nixpkgs.lib.nixosSystem {
+			    inherit system;
 
 				specialArgs = {
-                  inherit username; inherit hostname;
+                  inherit username;
+                  hostname = "mendeleev";
 				};
 
 				modules = [ 
-				  ./nixos/configuration.nix
+				  { nixpkgs.overlays = overlays; }
+				  ./nixos/common.nix
+				  ./nixos/mendeleev/conf.nix
+				];
+			  };
+              meyer = nixpkgs.lib.nixosSystem {
+			    inherit system;
+
+				specialArgs = {
+                  inherit username;
+				  hostname = "meyer";
+				};
+
+				modules = [ 
+				  { nixpkgs.overlays = overlays; }
+				  ./nixos/common.nix
+				  ./nixos/meyer/conf.nix
 				];
 			  };
 			};
 
 			homeConfigurations = {
               lucas = home-manager.lib.homeManagerConfiguration {
-                inherit system; inherit pkgs;
+                pkgs = import nixpkgs { inherit system overlays; };
 
 				extraSpecialArgs = {
-                  inherit username; inherit hostname; inherit nixvim;
+                  inherit username nixvim;
 				};
 
 				modules = [
