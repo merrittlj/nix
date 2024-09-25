@@ -3,6 +3,8 @@
 , fetchFromGitHub
 , libX11
 , libXft
+, inih
+, fontconfig
 , pkg-config
 }:
 
@@ -12,15 +14,17 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "merrittlj";
-	repo = "upgraded-rpbar";
-    #rev = "v${version}";
+    repo = "upgraded-rpbar";
     rev = "v1.0.0";
     sha256 = "sha256-eaKNbKr1hkZTKXhypEBYELuc/RTy/8xY8gvhdWQbwc4=";
   };
+  #src = /home/lucas/programming/upgraded-rpbar/code.tar.gz;
 
   buildInputs = [
     libX11
     libXft
+    inih
+    fontconfig
     pkg-config
   ];
 
@@ -34,10 +38,6 @@ stdenv.mkDerivation (finalAttrs: {
 	chmod +x $out/bin/rpbarsend
   '';
   
-   preConfigure = ''
-     export CFLAGS="$CFLAGS -DRPBAR_SCREEN=0"
-   '';
-
   meta = {
     homepage = "https://github.com/merrittlj/upgraded-rpbar";
     description = "upgraded rpbar";
