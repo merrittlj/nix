@@ -10,15 +10,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "rpbar";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "merrittlj";
-    repo = "upgraded-rpbar";
-    rev = "v1.0.0";
-    sha256 = "sha256-eaKNbKr1hkZTKXhypEBYELuc/RTy/8xY8gvhdWQbwc4=";
+    repo = "rpbar";
+    rev = "v1.0.1";
+    sha256 = "sha256-9IqjyOPH5F3DjAH6JWxGE/Nn6ScuyNZozn5h39VL2bE=";
   };
-  #src = /home/lucas/programming/upgraded-rpbar/code.tar.gz;
 
   buildInputs = [
     libX11
@@ -39,7 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
   
   meta = {
-    homepage = "https://github.com/merrittlj/upgraded-rpbar";
+    homepage = "https://github.com/merrittlj/rpbar";
     description = "upgraded rpbar";
     mainProgram = "rpbar";
     inherit (libX11.meta) platforms;
