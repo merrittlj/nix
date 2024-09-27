@@ -37,7 +37,7 @@
 				modules = [ 
 				  { nixpkgs.overlays = overlays; }
 				  ./nixos/common.nix
-				  ./nixos/mendeleev/conf.nix
+				  ./nixos/mendeleev/default.nix
 				];
 			  };
               meyer = nixpkgs.lib.nixosSystem {
@@ -51,7 +51,7 @@
 				modules = [ 
 				  { nixpkgs.overlays = overlays; }
 				  ./nixos/common.nix
-				  ./nixos/meyer/conf.nix
+				  ./nixos/meyer/default.nix
 				];
 			  };
 			};
