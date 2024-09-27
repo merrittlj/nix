@@ -5,5 +5,6 @@
       ./touchpad.nix
       ./binds.nix
       ./xorg.nix
+      ./xsetroot.nix
     ];
   }

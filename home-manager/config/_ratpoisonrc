@@ -1,6 +1,5 @@
-#exec nitrogen --random wallpapers/dharmx/cold/kym-mackinnon-KrrVNx8R640-unsplash.jpg --set-zoom-fill --save
 exec bt s
-exec /usr/bin/rpws init 4 -k
+#exec /usr/bin/rpws init 4 -k
 
 set winname title
 set wingravity center
@@ -25,9 +24,8 @@ bind h exec menu
 bind R restart
 bind r remove
 bind q quit
-bind W exec doas poweroff
-bind M exec doas restart
-bind g exec wpars
+bind W exec poweroff
+bind M exec restart
 
 # rpbar
 # tell ratpoison to ignore rpbar
