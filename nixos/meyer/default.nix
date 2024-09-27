@@ -2,7 +2,7 @@
 
 {
   imports = [
-      ./hw.nix
+      ./hardware.nix
       ./modules/bundle.nix
   ];
   

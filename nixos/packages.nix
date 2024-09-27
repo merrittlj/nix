@@ -24,6 +24,7 @@
     efibootmgr
     bc
     actkbd
+    qmk
 
     # GUI utils
     feh
