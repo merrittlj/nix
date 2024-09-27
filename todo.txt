@@ -1,6 +1,5 @@
 common:
-* setting rpbar w/ xsetroot service
-* rpbar screen/dotfile
+* status bar additions(wifi, etc.)
 
 meyer:
 * git requiring authentication
