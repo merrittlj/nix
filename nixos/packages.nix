@@ -58,5 +58,8 @@
   
   fonts.packages = with pkgs; [
     libertinus
+    ibm-plex
+    proggyfonts
+    intel-one-mono
   ];
 }
