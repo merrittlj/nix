@@ -6,10 +6,12 @@
     windowManager.ratpoison.enable = true; 
     xkb.layout = "us";
 
-    displayManager.lightdm = {
-      enable = true;
+    displayManager = {
+      lightdm.enable = true;
+	  setupCommands = ''
+        ${pkgs.autorandr}/bin/autorandr --default default --change &
+	  '';
     };
-    # startx.enable = true;
 
     videoDrivers = [ "nvidia" ];
   };
