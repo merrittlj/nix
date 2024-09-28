@@ -1,14 +1,22 @@
-{ pkgs, ... }: {
-  systemd.user.services.xsetroot = {
+{ pkgs, lib, ... }: {
+  systemd.services.xsetroot = {
     enable = true;
-    description = "xsetroot every second";
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    description = "set xsetroot routinely";
+    wantedBy = [ "graphical.target" ];
+    after = [ "graphical.target" ];
     serviceConfig = {
       Type = "simple";
+      User = "lucas";
       Restart = "always";
-	  RestartSec = "5s";
-      ExecStart = "/bin/sh -c '${pkgs.xorg.xsetroot}/bin/xsetroot -name \"$(${pkgs.coreutils-full}/bin/date \"+%%m/%%d %%R\")\"'";
+	  RestartSec = "2s";
+
+      # xsetroot needs a display when running in root, we use -d :0
+      ExecStart = lib.strings.concatStrings [
+        "+/bin/sh -c "
+        "'${pkgs.xorg.xsetroot}/bin/xsetroot -d :0 -name "
+        "\""
+        "$(${pkgs.coreutils-full}/bin/date \"+%%m/%%d %%R\") "
+        \"'"];
     };
   };
 }
