@@ -11,6 +11,7 @@
       }];
       extraConfig = ''
         permit nopass :wheel as root cmd "${pkgs.brightness-control}/bin/brightness-control"
+        permit nopass :wheel as root cmd "${pkgs.iw}/bin/iw"
 	  '';
     };
   };

@@ -10,13 +10,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "rpbar";
-  version = "1.0.1";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "merrittlj";
     repo = "rpbar";
-    rev = "v1.0.1";
-    sha256 = "sha256-9IqjyOPH5F3DjAH6JWxGE/Nn6ScuyNZozn5h39VL2bE=";
+    rev = "v1.0.2";
+    sha256 = "sha256-kCtsu0Im/4Ut05VAw5SiNZsMK1Fnzb4zkwAvo7tBaNA=";
   };
 
   buildInputs = [
