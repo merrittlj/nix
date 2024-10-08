@@ -5,5 +5,6 @@
       ./xorg.nix
       ./autorandr.nix
       ./audio.nix
+      ./language.nix
     ];
   }

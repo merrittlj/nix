@@ -4,6 +4,7 @@
     autorun = true;
     
     windowManager.ratpoison.enable = true; 
+    desktopManager.runXdgAutostartIfNone = true;
     xkb.layout = "us";
 
     displayManager = {

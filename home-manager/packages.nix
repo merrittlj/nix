@@ -10,5 +10,9 @@
     qutebrowser
     firefox
     nitrogen
+    
+    python3
+    python311Packages.requests
+    darkhttpd
   ];
 }

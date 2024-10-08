@@ -62,5 +62,6 @@
     ibm-plex
     proggyfonts
     intel-one-mono
+    noto-fonts-cjk-sans
   ];
 }
