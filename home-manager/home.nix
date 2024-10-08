@@ -15,6 +15,7 @@
                   ".ratpoisonrc".source = ./config/_ratpoisonrc;
                   ".rpbar.ini".source = ./config/_rpbar.ini;
                   ".vim".source = ./config/_vim;
+                  ".config/fcitx5/".source = ./config/fcitx5;
 		};
 	};
 }
