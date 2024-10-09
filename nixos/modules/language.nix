@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  environment.pathsToLink = [ "/share/fcitx5" ];
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [

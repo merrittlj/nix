@@ -63,5 +63,12 @@
     proggyfonts
     intel-one-mono
     noto-fonts-cjk-sans
+    wqy_microhei
+    smiley-sans
+	lxgw-wenkai
+	lxgw-neoxihei
+    # Enabling these seems to override the default font in Firefox
+    #wqy_zenhei
+	#vistafonts-chs
   ];
 }
