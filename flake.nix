@@ -50,6 +50,9 @@
 
 				modules = [ 
 				  { nixpkgs.overlays = overlays; }
+                  { nixpkgs.overlays = [
+				    (import ./nixos/meyer/overlays/scripts.nix)
+				  ];}
 				  ./nixos/common.nix
 				  ./nixos/meyer/default.nix
 				];
