@@ -23,6 +23,7 @@ final: prev:
           "| ${final.gnused}/bin/sed -E \"s/\\x09//g\") "
         "$(${final.coreutils-full}/bin/date \"+%m/%d %R\") "
         "$(${final.battery}/bin/battery "
-          "| ${final.gnused}/bin/sed -E \"s/([0-9]*)\\..*/\\\\1/g\")%\"'"];
+          "| ${final.gnused}/bin/sed -E \"s/([0-9]*)\\..*/\\\\1/g\")%\"'"
+    ];
   };
 }

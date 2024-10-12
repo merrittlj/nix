@@ -4,10 +4,10 @@ final: prev:
   # NixOS rebuild
   rb = final.writeShellApplication {
     name = "rb";
-    runtimeInputs = with final; [ nixos-rebuild ];
+    runtimeInputs = with final; [ nixos-rebuild hostname ];
 
     text = ''
-      nixos-rebuild switch --flake "$FLAKE_PATH"#"$1"
+      nixos-rebuild switch --flake "$FLAKE_PATH"#"$(hostname)"
     '';
   };
 
@@ -21,12 +21,62 @@ final: prev:
     '';
   };
   
+  # Build package from package dir
   pb = final.writeShellApplication {
     name = "pb";
 	runtimeInputs = with final; [ nix ];
   
     text = ''
-      nix-build -E let pkgs = import <nixpkgs> { }; in pkgs.callPackage ./default.nix {}
+      nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
+	'';
+  };
+
+  # Find package path
+  wh = final.writeShellApplication {
+    name = "wh";
+	runtimeInputs = with final; [ coreutils which gnused ];
+  
+    text = ''
+      realpath "$(which "$1")" | sed -E 's/.*-(.*)-.*\/bin\/.*/\1/g'
+	'';
+  };
+
+  # Git upload process
+  gp = final.writeShellApplication {
+    name = "gp";
+	runtimeInputs = with final; [ git ];
+  
+    text = ''
+      while true; do
+	    read -r -p "Add? " yn
+	    case $yn in
+	      [Yy]* | "" ) git add .; break;;
+		  [Nn]* ) ;;
+          * ) echo "Please answer yes or no.";;
+		  esac
+	  done
+	  commit=0;
+      while true; do
+	    read -r -p "Commit? " yn
+	    case $yn in
+	      [Yy]* | "" ) commit=1; break;;
+		  [Nn]* ) commit=0;;
+          * ) echo "Please answer yes or no.";;
+		  esac
+	  done
+	  if [[ "$commit" == 1 ]]; then
+	    read -r -p "Message? " message
+		git commit -m "$message"
+	  fi
+      while true; do
+	    read -r -p "Push? " yn
+	    case $yn in
+	      [Yy]* | "" ) git push; break;;
+		  [Nn]* ) ;;
+          * ) echo "Please answer yes or no.";;
+		  esac
+	  done
+	  echo "Done";
 	'';
   };
 
