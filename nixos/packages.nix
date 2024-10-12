@@ -40,6 +40,9 @@
     # Overlays
     rb
     hm
+    pb
+    wh
+    gp
     rvh
     rv
     gr

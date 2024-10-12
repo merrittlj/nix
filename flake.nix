@@ -36,6 +36,9 @@
 
 				modules = [ 
 				  { nixpkgs.overlays = overlays; }
+                  { nixpkgs.overlays = [
+				    (import ./nixos/mendeleev/overlays/scripts.nix)
+				  ];}
 				  ./nixos/common.nix
 				  ./nixos/mendeleev/default.nix
 				];

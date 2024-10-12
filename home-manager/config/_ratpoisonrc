@@ -7,7 +7,7 @@ set transgravity center
 set bargravity center
 set border 1
 set barborder 1
-set font "Libertinus Mono:size=13"
+set font "Intel One Mono:size=13"
 set bgcolor #353535
 set fgcolor #d7d7d7
 
@@ -31,7 +31,7 @@ bind M exec restart
 # tell ratpoison to ignore rpbar
 unmanage rpbar
 # leave space for bars, 24 for desktop 39 for laptop
-set padding 0 0 0 25
+set padding 0 0 0 27
 # start rpbar 
 exec rpbar
 # hooks

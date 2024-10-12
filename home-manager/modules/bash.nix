@@ -10,5 +10,11 @@
           DH_PATH = "/home/${username}/programming/embedded/dash";
 		  WALLPAPERS_PATH = "/home/${username}/wallpapers";
 		};
+
+		shellAliases = {
+          d = "doas";
+          dr = "doas rb";
+		  v = "vim";
+		};
 	};
 }
