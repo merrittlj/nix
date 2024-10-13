@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "One Half Light";      
+    theme = "One Half Light";
 	settings = {
 
 	  background_opacity = "1.0";
