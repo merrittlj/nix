@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.nixvim = {
     enable = true;
@@ -38,6 +39,9 @@
 	  commentary.enable = true;
 	};
 
-	colorschemes.one.enable = true;
+    extraPlugins = with pkgs.vimPlugins; [
+      onehalf
+    ];
+    colorscheme = "onehalflight";
   };
 }

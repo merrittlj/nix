@@ -25,7 +25,7 @@ bind R restart
 bind r remove
 bind q quit
 bind W exec poweroff
-bind M exec restart
+bind M exec reboot
 
 # rpbar
 # tell ratpoison to ignore rpbar
