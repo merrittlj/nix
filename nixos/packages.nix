@@ -53,6 +53,7 @@
     brightness-control
 
     rpbar
+    stm32cubeprog
 
 
     # Misc.

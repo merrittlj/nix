@@ -13,6 +13,7 @@
     gimp
     okular
     hugo
+    stm32cubemx
     
     python3
     python311Packages.requests
