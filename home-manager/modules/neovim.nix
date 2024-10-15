@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   mkKeymap = mode: key: action: { inherit mode key action; };
   mkKeymapWithOpts =
     mode: key: action: opts:
     (mkKeymap mode key action) // { options = opts; };
+  
+  mkVimPlugin = name: owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin { inherit name; src = pkgs.fetchFromGitHub { inherit owner repo rev; hash = (if hash == null then "sha256-0000000000000000000000000000000000000000000=" else hash); }; };
 in
 {
   programs.nixvim = {
@@ -34,6 +36,7 @@ in
 	  ttimeoutlen = 1;
 	  ttyfast = true;
 
+      termguicolors = true;
       background = "light";
 	};
 
@@ -46,10 +49,32 @@ in
 	};
 
     extraPlugins = with pkgs.vimPlugins; [
-      onehalf
+      (mkVimPlugin "themery" "zaldih" "themery.nvim" "v2.0.0" "sha256-MbNaOIxiYmju9R+mTI+qtbwG0UNt8meNcOS5uO0pRfw=")
     ];
-    colorscheme = "onehalflight";
+    
+    extraConfigLua = ''
+      require("themery").setup({
+        -- themes = {"ayu", "catppuccin", "everforest", "gruvbox", "kanagawa", "melange", "modus", "nord", "one", "oxocarbon", "rose-pine", "tokyonight", "vscode", ...}, -- Your list of installed colorschemes.
+        themes = {"ayu", "one", "oxocarbon", ... },
+        livePreview = true, -- Apply theme while picking. Default to true.
+      })
+    '';
 
+    colorschemes.ayu.enable = true;
+    colorschemes.catppuccin.enable = true;
+    colorschemes.everforest.enable = true;
+    colorschemes.gruvbox.enable = true;
+    colorschemes.kanagawa.enable = true;
+    colorschemes.melange.enable = true;
+    colorschemes.modus.enable = true;
+    colorschemes.nord.enable = true;
+    colorschemes.one.enable = true;
+    colorschemes.oxocarbon.enable = true;
+    colorschemes.rose-pine.enable = true;
+    colorschemes.tokyonight.enable = true;
+    colorschemes.vscode.enable = true;
+    colorscheme = "one";
+    
     keymaps = [
       # Use jk/kj to escape insert mode
       (mkKeymap "i" "jk" "<esc>")
@@ -61,7 +86,7 @@ in
       (mkKeymap "n" ",t" ":tabe <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
       (mkKeymap "n" ",s" ":split <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
       # Quote double quotes in current line
-      (mkKeymap "n" "qs" "0 :let hls = &hlsearch <CR> :set nohlsearch <CR> :.s#\"#\\\\\"#g <CR> :if hls | let @/ = '' | endif <CR> :let &hlsearch = hls <CR> 0")
+      (mkKeymapWithOpts "n" "qs" "0 :let hls = &hlsearch <CR> :set nohlsearch <CR> :.s#\"#\\\\\"#g <CR> :if hls | let @/ = '' | endif <CR> :let &hlsearch = hls <CR> 0" { silent = true; })
     ];
   };
 }
