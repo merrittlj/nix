@@ -190,6 +190,49 @@ final: prev:
 	'';
   };
 
+  volume-ctl = final.writeShellApplication {
+    name = "volume-ctl";
+	runtimeInputs = with final; [ coreutils-full socat volume-ctl-handler ];
+
+	text = ''
+	  SOCKET="/tmp/volume.sock"
+	  if [ -S "$SOCKET" ]; then
+	    echo "Removing existing socket $SOCKET..."
+		rm -v "$SOCKET"
+	  fi
+      
+      echo "Listening on socket $SOCKET..."
+	  socat UNIX-LISTEN:"$SOCKET",fork SYSTEM:"volume-ctl-handler" &
+	'';
+  };
+
+  volume-ctl-handler = final.writeShellApplication {
+    name = "volume-ctl-handler";
+	runtimeInputs = with final; [ coreutils-full gnused alsa-utils gawk ];
+
+	text = ''
+      while IFS="" read -r line || [[ -n "$line" ]]; do
+		mode=$(cut -c1 <<< "$line")
+		case $mode in
+		  s)
+		    echo "Set mode"
+	        # shellcheck disable=SC2001
+            command=$(sed 's#s\s\(.*\)#\1#' <<< "$line")
+	        echo "Extracted: $command"
+			amixer set Master "$command"
+			;;
+		  g)
+            amixer get Master \
+              | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $3 }'
+			;;
+		  *)
+		    echo "Unknown mode: $mode"
+			;;
+        esac
+	  done
+	'';
+  };
+
   #unzip-dir = final.writeShellApplication {
   #  name = "unzip zip files in the current dir";
   #  runtimeInputs = with final; [ gnugrep gawk unzip ];

@@ -25,6 +25,7 @@
     bc
     actkbd
     qmk
+    socat
 
     # GUI utils
     feh
@@ -51,6 +52,8 @@
     batterylife
     batterye
     brightness-control
+    volume-ctl
+    volume-ctl-handler
 
     rpbar
     stm32cubeprog
