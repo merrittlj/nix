@@ -5,7 +5,7 @@
       ./xorg.nix
       ./xsetroot.nix
       ./autorandr.nix
-      ./audio.nix
       ./language.nix
+      ./volume-ctl.nix
     ];
   }

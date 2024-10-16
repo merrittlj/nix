@@ -4,7 +4,7 @@ final: prev:
   # Set status bar
   set_status = final.writeShellApplication {
     name = "set_status";
-    runtimeInputs = with final; [ xorg.xsetroot iw gnugrep gnused coreutils-full battery ];
+    runtimeInputs = with final; [ xorg.xsetroot iw gnugrep gnused coreutils-full socat battery ];
 
     # xsetroot needs a display when running in root, we use -d :0
     # iw dev spits out horizontal tabulations so we get rid of them with the "x09" sed
@@ -22,8 +22,8 @@ final: prev:
           "| ${final.gnused}/bin/sed -E \"s/(\\s*signal:\\s)(.*)\\sdBm/\\\\2/\" "
           "| ${final.gnused}/bin/sed -E \"s/\\x09//g\") "
         "$(${final.coreutils-full}/bin/date \"+%m/%d %R\") "
-        "$(${final.battery}/bin/battery "
-          "| ${final.gnused}/bin/sed -E \"s/([0-9]*)\\..*/\\\\1/g\")%\"'"
-    ];
+        "v$(socat - UNIX-CONNECT:/tmp/volume.sock <<< \"g\") "
+        "b$(${final.battery}/bin/battery "
+          "| ${final.gnused}/bin/sed -E \"s/([0-9]*)\\..*/\\\\1/g\")%\"'"];
   };
 }
