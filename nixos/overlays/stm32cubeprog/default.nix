@@ -19,7 +19,6 @@ let
     src = fetchzip {
       url = "https://www.dropbox.com/scl/fi/cpz096lsdwjd5i0vk8msc/stm32cubeprog-2-17-0.zip?rlkey=zx4bkyoa7ukbeq9wudivhfrbz&st=j1pnhlv6&dl=1";
       sha256 = "sha256-krvECbtNGs01Zjdx6PqddmfnVZg1pM6upaMc2rwa0EQ=";
-      #curlOpts = "--compressed --user-agent \"Firefox/131.0\" -o stm32cubeprog-2-17-0.zip";
       extension = "zip";
       stripRoot = false;
     };
@@ -35,7 +34,6 @@ let
       cat << EOF > $out/bin/${pname}_installer
       #!${stdenvNoCC.shell}
       $out/opt/SetupSTM32CubeProgrammer-${version}.linux
-      echo "Installation complete";
       EOF
       chmod +x $out/bin/${pname}_installer
 
@@ -47,7 +45,8 @@ let
       echo $SO_FILES
       export LD_PRELOAD="$SO_FILES"
 
-      $out/prog/bin/jre/bin/java -Djdk.gtk.version=2 -jar "$out/prog/bin/STM32CubeProgrammerLauncher"
+      cd $out/prog/bin || exit 1 # Necessary for file path resolution(mainly for STLinkUpgrade.jar)
+      ./jre/bin/java -Djdk.gtk.version=2 -jar ./STM32CubeProgrammerLauncher
       EOF
       chmod +x $out/bin/${package.pname}_run
     '';

@@ -7,5 +7,6 @@
       ./autorandr.nix
       ./language.nix
       ./volume-ctl.nix
+      ./udev.nix
     ];
   }
