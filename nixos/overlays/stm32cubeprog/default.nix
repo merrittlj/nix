@@ -30,12 +30,26 @@ let
       cp -r $src/jre/ $out/opt
       cp $src/SetupSTM32CubeProgrammer-${version}.linux $out/opt
       cp $src/SetupSTM32CubeProgrammer-${version}.exe $out/opt
+      ln -s /cube $out/prog
 
       cat << EOF > $out/bin/${pname}_installer
       #!${stdenvNoCC.shell}
       $out/opt/SetupSTM32CubeProgrammer-${version}.linux
+      echo "Installation complete";
       EOF
       chmod +x $out/bin/${pname}_installer
+
+      cat << EOF > $out/bin/${package.pname}_run
+      #!${stdenvNoCC.shell}
+      export LD_LIBRARY_PATH="$out/prog/lib:$LD_LIBRARY_PATH"
+
+      SO_FILES=$(find "$out/prog/lib" -name "*.so" | tr '\n' ' ')
+      echo $SO_FILES
+      export LD_PRELOAD="$SO_FILES"
+
+      $out/prog/bin/jre/bin/java -Djdk.gtk.version=2 -jar "$out/prog/bin/STM32CubeProgrammerLauncher"
+      EOF
+      chmod +x $out/bin/${package.pname}_run
     '';
 
     meta = {
@@ -85,7 +99,7 @@ installerEnv = buildFHSEnv {
 progEnv = buildFHSEnv {
   pname = "${package.pname}";
   inherit (package) version meta;
-  runScript = "/home/lucas/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32CubeProgrammer";
+  runScript = "${package.outPath}/bin/${package.pname}_run";
 
   targetPkgs = pkgs: (with pkgs; [
     dejavu_fonts
