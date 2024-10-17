@@ -23,7 +23,7 @@
             overlays = [
 			  (import ./nixos/overlays/scripts.nix)
               (import ./nixos/overlays/rpbar.nix)
-              (import ./nixos/overlays/stm32cube_prog.nix)
+              (import ./nixos/overlays/stm32cubeprog.nix)
 			];
 		in {
 			nixosConfigurations = {

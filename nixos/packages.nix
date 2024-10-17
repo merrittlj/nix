@@ -56,8 +56,8 @@
     volume-ctl-handler
 
     rpbar
-    stm32cubeprog
-
+    stm32cubeprog.installerEnv
+    stm32cubeprog.progEnv
 
     # Misc.
     home-manager
