@@ -17,10 +17,10 @@ let
     version = "2.17.0";
 
     src = fetchzip {
-      #url = "https://www.st.com/content/ccc/resource/technical/software/utility/group0/3a/d7/87/bd/1a/54/4b/2f/stm32cubeprg-lin-v2-16-0/files/stm32cubeprg-lin-v2-16-0.zip/jcr:content/translations/en.stm32cubeprg-lin-v${builtins.replaceStrings ["."] ["-"] version}.zip";
-      url = "https://www.st.com/content/ccc/resource/technical/software/utility/group0/3f/99/f1/92/bd/74/4f/5f/stm32cubeprg-lin-v2-17-0/files/stm32cubeprg-lin-v2-17-0.zip/jcr:content/translations/en.stm32cubeprg-lin-v2-17-0.zip";
+      url = "https://www.dropbox.com/scl/fi/cpz096lsdwjd5i0vk8msc/stm32cubeprog-2-17-0.zip?rlkey=zx4bkyoa7ukbeq9wudivhfrbz&st=j1pnhlv6&dl=1";
       sha256 = "sha256-krvECbtNGs01Zjdx6PqddmfnVZg1pM6upaMc2rwa0EQ=";
-      curlOpts = "--compressed --user-agent \"Firefox/131.0\"";
+      #curlOpts = "--compressed --user-agent \"Firefox/131.0\" -o stm32cubeprog-2-17-0.zip";
+      extension = "zip";
       stripRoot = false;
     };
 
