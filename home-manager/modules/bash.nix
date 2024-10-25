@@ -15,6 +15,9 @@
           d = "doas";
           dr = "doas rb";
 		  v = "vim";
+          cura = "appimage-run ~/cura.AppImage -platformtheme gtk3";
+          n = "ninja";
+          c = "cmake $RV_PATH -G Ninja";
 		};
 	};
 }

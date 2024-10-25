@@ -24,6 +24,7 @@
 			  (import ./nixos/overlays/scripts.nix)
               (import ./nixos/overlays/rpbar.nix)
               (import ./nixos/overlays/stm32cubeprog.nix)
+              #(import ./nixos/overlays/cura.nix)
 			];
 		in {
 			nixosConfigurations = {

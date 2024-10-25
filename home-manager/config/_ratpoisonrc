@@ -27,6 +27,10 @@ bind q quit
 bind W exec poweroff
 bind M exec reboot
 
+bind o bt s
+bind e bt r
+bind u rv
+
 # rpbar
 # tell ratpoison to ignore rpbar
 unmanage rpbar

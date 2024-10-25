@@ -98,12 +98,14 @@ final: prev:
   # Raven code launch
   rv = final.writeShellApplication {
     name = "rv";
-    runtimeInputs = with final; [ kitty ];
+    runtimeInputs = with final; [ kitty coreutils ];
 
     text = ''
-      cd "$RV_PATH"
-  	  kitty
-  	  vim
+      cat << EOF > /tmp/rv_ses
+      launch sh -c "cd $RV_PATH/build && nix-shell ../shell.nix"
+EOF
+  	  kitty --session /tmp/rv_ses
+      rm /tmp/rv_ses
     '';
   };
 
@@ -231,6 +233,26 @@ final: prev:
         esac
 	  done
 	'';
+  };
+
+  # Process of mounting and umounting an sdcard interactively
+  sdmount = final.writeShellApplication {
+    name = "sdmount";
+    runtimeInputs = with final; [ coreutils-full ];
+
+    text = ''
+      mount /dev/sdb1 /home/lucas/sdcard -o umask=000
+      while true; do
+	    read -r -p "Done? " yn
+	    case $yn in
+	      [Yy]* | "" ) break;;
+		  [Nn]* ) ;;
+          * ) echo "Please answer yes or no.";;
+		  esac
+	  done
+      umount sdcard
+      eject /dev/sdb1
+    '';
   };
 
   #unzip-dir = final.writeShellApplication {
