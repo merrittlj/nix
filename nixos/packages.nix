@@ -26,6 +26,7 @@
     actkbd
     qmk
     socat
+    appimage-run
 
     # GUI utils
     feh
@@ -54,6 +55,7 @@
     brightness-control
     volume-ctl
     volume-ctl-handler
+    sdmount
 
     rpbar
     stm32cubeprog.installerEnv
