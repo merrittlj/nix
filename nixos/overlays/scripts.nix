@@ -130,6 +130,8 @@ EOF
         grep "file" ~/.config/nitrogen/bg-saved.cfg | sed "s/file=//"
       elif [ "$MODE" = "s" ]; then
         nitrogen --random "$WALLPAPERS_PATH" --set-zoom-fill --save
+      elif [ "$MODE" = "x" ]; then
+        nitrogen "$2" --set-zoom-fill --save
       elif [ "$MODE" = "r" ]; then
         rm "$(bt)"
   	    bt s

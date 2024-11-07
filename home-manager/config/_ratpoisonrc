@@ -1,5 +1,5 @@
-exec bt s
-#exec /usr/bin/rpws init 4 -k
+#exec bt s
+exec bt x ~/wallpapers/china_ly.jpg
 
 set winname title
 set wingravity center
