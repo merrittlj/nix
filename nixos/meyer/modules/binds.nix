@@ -8,6 +8,8 @@
       { keys = [ 115 ]; events = [ "key" ]; command = "${pkgs.socat}/bin/socat - UNIX-CONNECT:/tmp/volume.sock <<< \"s 5%+\" && ${pkgs.set_status}/bin/set_status"; }
       { keys = [ 114 ]; events = [ "key" ]; command = "${pkgs.socat}/bin/socat - UNIX-CONNECT:/tmp/volume.sock <<< \"s 5%-\" && ${pkgs.set_status}/bin/set_status"; }
       { keys = [ 113 ]; events = [ "key" ]; command = "${pkgs.socat}/bin/socat - UNIX-CONNECT:/tmp/volume.sock <<< \"s toggle\" && ${pkgs.set_status}/bin/set_status"; }
+      { keys = [ 120 ]; events = [ "key" ]; command = "systemctl restart wpa_supplicant"; }
+      # doas actkbd -n -s -d /dev/input/event7
 	];
   };
 }

@@ -34,6 +34,11 @@
 		  phase2="auth=MSCHAPV2"
 		'';
 	  };
+	  "303CoffeeCo-5" = {
+	    auth = ''
+		  psk="@PSK_303COFFEE@"
+		'';
+	  };
 	};
   };
 }
