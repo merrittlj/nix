@@ -2,13 +2,13 @@
 # Group Name
 Name="Group 1"
 # Layout
-Default Layout=us
+Default Layout=us-dvp
 # Default Input Method
 DefaultIM=pinyin
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us
+Name=keyboard-us-dvp
 # Layout
 Layout=
 
@@ -22,13 +22,13 @@ Layout=
 # Group Name
 Name="Group 2"
 # Layout
-Default Layout=us
+Default Layout=us-dvp
 # Default Input Method
-DefaultIM=keyboard-us
+DefaultIM=keyboard-us-dvp
 
 [Groups/1/Items/0]
 # Name
-Name=keyboard-us
+Name=keyboard-us-dvp
 # Layout
 Layout=
 

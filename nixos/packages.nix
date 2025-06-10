@@ -28,6 +28,9 @@
     socat
     appimage-run
 
+
+    libGL
+
     # GUI utils
     feh
     maim
@@ -56,6 +59,8 @@
     volume-ctl
     volume-ctl-handler
     sdmount
+
+    jdk21
 
     rpbar
     stm32cubeprog.installerEnv
