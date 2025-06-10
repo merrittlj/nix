@@ -1,5 +1,5 @@
-exec bt s
-#exec /usr/bin/rpws init 4 -k
+#exec bt s
+exec nitrogen "$WALLPAPERS_PATH/perm.jpg" --set-zoom-fill --save
 
 set winname title
 set wingravity center
@@ -35,7 +35,7 @@ bind u rv
 # tell ratpoison to ignore rpbar
 unmanage rpbar
 # leave space for bars, 24 for desktop 39 for laptop
-set padding 0 0 0 27
+set padding 0 0 0 39
 # start rpbar 
 exec rpbar
 # hooks

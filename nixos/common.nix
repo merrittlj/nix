@@ -15,6 +15,8 @@
   # Internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  environment.wordlist.enable = true;
+
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
   

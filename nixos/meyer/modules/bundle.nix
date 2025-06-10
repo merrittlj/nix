@@ -2,7 +2,7 @@
     imports = [
       ./audio.nix
       ./bootloader.nix
-      ./wireless.nix
+      ./network.nix
       ./touchpad.nix
       ./binds.nix
       ./xorg.nix

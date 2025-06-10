@@ -8,7 +8,7 @@
 	  dim_opacity = "0.5";
 
 	  font_family = "Intel One Mono";
-	  font_size = "14.0";
+	  font_size = "22.0";
 	  disable_ligatures = "never";
 
 	  cursor_shape = "block";
