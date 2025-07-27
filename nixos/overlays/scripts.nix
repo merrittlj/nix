@@ -84,28 +84,24 @@ final: prev:
   # Raven hardware project launch
   rvh = final.writeShellApplication {
     name = "rvh";
-    runtimeInputs = with final; [ kicad okular firefox kitty ];
+    runtimeInputs = with final; [ kicad okular firefox alacritty ];
 
     text = ''
       kicad "$RVH_PATH"/kicad/kicad.kicad_pro &
   	  okular "$RVH_PATH"/reference/display.pdf &
   	  firefox &
   	  cd "$RVH_PATH"
-  	  kitty
+  	  alacritty
     '';
   };
 
   # Raven code launch
   rv = final.writeShellApplication {
     name = "rv";
-    runtimeInputs = with final; [ kitty coreutils ];
+    runtimeInputs = with final; [ alacritty ];
 
     text = ''
-      cat << EOF > /tmp/rv_ses
-      launch sh -c "cd $RV_PATH/build && nix-shell ../shell.nix"
-EOF
-  	  kitty --session /tmp/rv_ses
-      rm /tmp/rv_ses
+        alacritty --working-directory "$RV_PATH"/build -e sh -c "nix-shell ../shell.nix"
     '';
   };
 
@@ -243,7 +239,7 @@ EOF
     runtimeInputs = with final; [ coreutils-full ];
 
     text = ''
-      mount /dev/sdb1 /home/lucas/sdcard -o umask=000
+      mount /dev/sdc1 /home/lucas/sdcard -o umask=000
       while true; do
 	    read -r -p "Done? " yn
 	    case $yn in
@@ -253,7 +249,7 @@ EOF
 		  esac
 	  done
       umount sdcard
-      eject /dev/sdb1
+      eject /dev/sdc1
     '';
   };
 

@@ -27,6 +27,7 @@
     qmk
     socat
     appimage-run
+    usbutils
 
     # GUI utils
     feh

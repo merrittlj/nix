@@ -18,6 +18,7 @@
           cura = "appimage-run ~/cura.AppImage -platformtheme gtk3";
           n = "ninja";
           c = "cmake $RV_PATH -G Ninja";
+          ihatejava = "_JAVA_AWT_WM_NONREPARENTING=1";
 		};
 	};
 }
