@@ -37,7 +37,7 @@ in
 	  ttyfast = true;
 
       termguicolors = true;
-      background = "light";
+      background = "dark";
 	};
 
 	plugins = {
@@ -68,12 +68,12 @@ in
     colorschemes.melange.enable = true;
     colorschemes.modus.enable = true;
     colorschemes.nord.enable = true;
-    colorschemes.one.enable = true;
+    # colorschemes.one.enable = true;
     colorschemes.oxocarbon.enable = true;
     colorschemes.rose-pine.enable = true;
     colorschemes.tokyonight.enable = true;
     colorschemes.vscode.enable = true;
-    colorscheme = "one";
+    colorscheme = "ayu";
     
     keymaps = [
       # Use jk/kj to escape insert mode

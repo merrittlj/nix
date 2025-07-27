@@ -1,5 +1,5 @@
-#exec bt s
-exec bt x ~/wallpapers/china_ly.jpg
+exec bt s
+#exec bt x ~/wallpapers/dharmx/architecture/citylights.jpg
 
 set winname title
 set wingravity center
@@ -7,12 +7,12 @@ set transgravity center
 set bargravity center
 set border 1
 set barborder 1
-set font "Intel One Mono:size=13"
+set font "Intel One Mono:size=12"
 set bgcolor #353535
 set fgcolor #d7d7d7
 
 escape M-t
-bind t exec kitty
+bind t exec alacritty
 bind n exec firefox
 bind h exec menu
 

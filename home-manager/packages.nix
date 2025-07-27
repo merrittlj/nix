@@ -13,10 +13,13 @@
     gimp
     okular
     hugo
-    stm32cubemx
-    
+    unstable.stm32cubemx
+
+    programmer-calculator
+
     python3
     python311Packages.requests
+    python311Packages.pypng
     darkhttpd
   ];
 }
