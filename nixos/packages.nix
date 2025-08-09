@@ -13,7 +13,7 @@
     # CLI utils
     wget
     doas
-    neofetch
+    fastfetch
     file
     tree
     htop
@@ -23,8 +23,6 @@
     read-edid
     efibootmgr
     bc
-    actkbd
-    qmk
     socat
     appimage-run
     usbutils
@@ -34,11 +32,11 @@
     maim
 
     # Xorg
-    ratpoison
     xclip
     xorg.xdpyinfo
     autorandr
     lightdm
+    berry
 
     # Overlays
     rb
@@ -46,21 +44,10 @@
     pb
     wh
     gp
-    rvh
-    rv
     gr
-    bt
     battery
     batterylife
-    batterye
     brightness-control
-    volume-ctl
-    volume-ctl-handler
-    sdmount
-
-    rpbar
-    stm32cubeprog.installerEnv
-    stm32cubeprog.progEnv
 
     # Misc.
     home-manager
@@ -77,6 +64,7 @@
     smiley-sans
 	lxgw-wenkai
 	lxgw-neoxihei
+    fantasque-sans-mono
     # Enabling these seems to override the default font in Firefox
     #wqy_zenhei
 	#vistafonts-chs

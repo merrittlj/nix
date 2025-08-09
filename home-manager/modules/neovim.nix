@@ -54,25 +54,12 @@ in
     
     extraConfigLua = ''
       require("themery").setup({
-        -- themes = {"ayu", "catppuccin", "everforest", "gruvbox", "kanagawa", "melange", "modus", "nord", "one", "oxocarbon", "rose-pine", "tokyonight", "vscode", ...}, -- Your list of installed colorschemes.
-        themes = {"ayu", "one", "oxocarbon", ... },
+        themes = {"ayu", ... },
         livePreview = true, -- Apply theme while picking. Default to true.
       })
     '';
 
     colorschemes.ayu.enable = true;
-    colorschemes.catppuccin.enable = true;
-    colorschemes.everforest.enable = true;
-    colorschemes.gruvbox.enable = true;
-    colorschemes.kanagawa.enable = true;
-    colorschemes.melange.enable = true;
-    colorschemes.modus.enable = true;
-    colorschemes.nord.enable = true;
-    # colorschemes.one.enable = true;
-    colorschemes.oxocarbon.enable = true;
-    colorschemes.rose-pine.enable = true;
-    colorschemes.tokyonight.enable = true;
-    colorschemes.vscode.enable = true;
     colorscheme = "ayu";
     
     keymaps = [

@@ -1,6 +1,0 @@
-common:
-* status bar additions(wifi, etc.)
-
-meyer:
-* git requiring authentication
-* firefox scaling

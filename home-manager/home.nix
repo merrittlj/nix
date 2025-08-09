@@ -12,9 +12,8 @@
 		stateVersion = "24.05";
                 
 		file = {
-                  ".ratpoisonrc".source = ./config/_ratpoisonrc;
-                  ".rpbar.ini".source = ./config/_rpbar.ini;
                   ".config/fcitx5/".source = ./config/fcitx5;
+                  ".config/berry/".source = ./config/berry;
 		};
 	};
 }

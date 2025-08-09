@@ -3,7 +3,7 @@
     enable = true;
     autorun = true;
     
-    windowManager.ratpoison.enable = true; 
+    windowManager.berry.enable = true; 
     desktopManager.runXdgAutostartIfNone = true;
     xkb.layout = "us";
 
