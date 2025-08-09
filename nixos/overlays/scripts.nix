@@ -81,30 +81,6 @@ final: prev:
   };
 
 
-  # Raven hardware project launch
-  rvh = final.writeShellApplication {
-    name = "rvh";
-    runtimeInputs = with final; [ kicad okular firefox alacritty ];
-
-    text = ''
-      kicad "$RVH_PATH"/kicad/kicad.kicad_pro &
-  	  okular "$RVH_PATH"/reference/display.pdf &
-  	  firefox &
-  	  cd "$RVH_PATH"
-  	  alacritty
-    '';
-  };
-
-  # Raven code launch
-  rv = final.writeShellApplication {
-    name = "rv";
-    runtimeInputs = with final; [ alacritty ];
-
-    text = ''
-        alacritty --working-directory "$RV_PATH"/build -e sh -c "nix-shell ../shell.nix"
-    '';
-  };
-
   # Recursive grep w/ formatting
   gr = final.writeShellApplication {
     name = "gr";
@@ -112,26 +88,6 @@ final: prev:
 
     text = ''
   	  grep -r -n -H -C 3 "$1" "$2"
-    '';
-  };
-
-  # Background management
-  bt = final.writeShellApplication {
-    name = "bt";
-    runtimeInputs = with final; [ nitrogen gnugrep gnused ];
-
-    text = ''
-      MODE="''${1:-default}"
-      if [ "$MODE" = "default" ]; then
-        grep "file" ~/.config/nitrogen/bg-saved.cfg | sed "s/file=//"
-      elif [ "$MODE" = "s" ]; then
-        nitrogen --random "$WALLPAPERS_PATH" --set-zoom-fill --save
-      elif [ "$MODE" = "x" ]; then
-        nitrogen "$2" --set-zoom-fill --save
-      elif [ "$MODE" = "r" ]; then
-        rm "$(bt)"
-  	    bt s
-  	  fi
     '';
   };
 
@@ -151,15 +107,6 @@ final: prev:
 
 	text = ''
 	  echo "$(cat /sys/class/power_supply/BAT0/charge_full) / $(cat /sys/class/power_supply/BAT0/charge_full_design)" | bc -l
-	'';
-  };
-
-  batterye = final.writeShellApplication {
-    name = "batterye";
-	runtimeInputs = with final; [ ratpoison ];
-
-	text = ''
-	  ratpoison -c "echo $(cat /sys/class/power_supply/BAT0/status) $(battery)%"
 	'';
   };
 
@@ -189,76 +136,4 @@ final: prev:
       currentValue=newValue
 	'';
   };
-
-  volume-ctl = final.writeShellApplication {
-    name = "volume-ctl";
-	runtimeInputs = with final; [ coreutils-full socat volume-ctl-handler ];
-
-	text = ''
-	  SOCKET="/tmp/volume.sock"
-	  if [ -S "$SOCKET" ]; then
-	    echo "Removing existing socket $SOCKET..."
-		rm -v "$SOCKET"
-	  fi
-      
-      echo "Listening on socket $SOCKET..."
-	  socat UNIX-LISTEN:"$SOCKET",fork SYSTEM:"volume-ctl-handler" &
-	'';
-  };
-
-  volume-ctl-handler = final.writeShellApplication {
-    name = "volume-ctl-handler";
-	runtimeInputs = with final; [ coreutils-full gnused alsa-utils gawk ];
-
-	text = ''
-      while IFS="" read -r line || [[ -n "$line" ]]; do
-		mode=$(cut -c1 <<< "$line")
-		case $mode in
-		  s)
-		    echo "Set mode"
-	        # shellcheck disable=SC2001
-            command=$(sed 's#s\s\(.*\)#\1#' <<< "$line")
-	        echo "Extracted: $command"
-			amixer set Master "$command"
-			;;
-		  g)
-            amixer get Master \
-              | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $3 }'
-			;;
-		  *)
-		    echo "Unknown mode: $mode"
-			;;
-        esac
-	  done
-	'';
-  };
-
-  # Process of mounting and umounting an sdcard interactively
-  sdmount = final.writeShellApplication {
-    name = "sdmount";
-    runtimeInputs = with final; [ coreutils-full ];
-
-    text = ''
-      mount /dev/sdc1 /home/lucas/sdcard -o umask=000
-      while true; do
-	    read -r -p "Done? " yn
-	    case $yn in
-	      [Yy]* | "" ) break;;
-		  [Nn]* ) ;;
-          * ) echo "Please answer yes or no.";;
-		  esac
-	  done
-      umount sdcard
-      eject /dev/sdc1
-    '';
-  };
-
-  #unzip-dir = final.writeShellApplication {
-  #  name = "unzip zip files in the current dir";
-  #  runtimeInputs = with final; [ gnugrep gawk unzip ];
-#
-#    text = ''
-#      ls *.zip | grep awk -F'.zip' '{print "unzip "$0" -d "$1}' | sh
-#    '';
-#  };
-}
+  }
