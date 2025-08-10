@@ -40,11 +40,8 @@
 
     # Overlays
     rb
-    hm
-    pb
     wh
     gp
-    gr
     battery
     batterylife
     brightness-control
