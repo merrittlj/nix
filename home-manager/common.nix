@@ -12,8 +12,7 @@
 		stateVersion = "24.05";
                 
 		file = {
-                  ".config/fcitx5/".source = ./config/fcitx5;
-                  ".config/berry/".source = ./config/berry;
+                  ".config/fcitx5/".source = ./src/fcitx5;
 		};
 	};
 }

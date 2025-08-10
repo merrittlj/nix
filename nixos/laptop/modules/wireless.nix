@@ -6,7 +6,7 @@
 
     environmentFile = "/wireless.env"; # wireless passwords in here.
 	networks = {
-      "FBI Surveillance Van" = {
+      "Bill Wi The Science Fi" = {
         auth = ''
           key_mgmt=NONE
 	    '';

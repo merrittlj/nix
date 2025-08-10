@@ -11,26 +11,6 @@ final: prev:
     '';
   };
 
-  # Home manager rebuild
-  hm = final.writeShellApplication {
-    name = "hm";
-    runtimeInputs = with final; [ home-manager ];
-
-    text = ''
-      home-manager switch --flake "$FLAKE_PATH"
-    '';
-  };
-  
-  # Build package from package dir
-  pb = final.writeShellApplication {
-    name = "pb";
-	runtimeInputs = with final; [ nix ];
-  
-    text = ''
-      nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
-	'';
-  };
-
   # Find package path
   wh = final.writeShellApplication {
     name = "wh";
@@ -78,17 +58,6 @@ final: prev:
 	  done
 	  echo "Done";
 	'';
-  };
-
-
-  # Recursive grep w/ formatting
-  gr = final.writeShellApplication {
-    name = "gr";
-    runtimeInputs = with final; [ gnugrep ];
-
-    text = ''
-  	  grep -r -n -H -C 3 "$1" "$2"
-    '';
   };
 
   battery = final.writeShellApplication {

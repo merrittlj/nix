@@ -2,9 +2,6 @@
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    mpv
-    discord
-    kicad
     nitrogen
     gimp
     okular
