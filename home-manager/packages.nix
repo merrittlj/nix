@@ -5,7 +5,6 @@
     mpv
     discord
     kicad
-    firefox
     nitrogen
     gimp
     okular
