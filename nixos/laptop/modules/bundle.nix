@@ -5,5 +5,6 @@
       ./wireless.nix
       ./touchpad.nix
       ./xorg.nix
+      ./hardware.nix
     ];
   }
