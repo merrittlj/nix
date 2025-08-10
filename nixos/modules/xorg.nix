@@ -1,18 +1,18 @@
 { pkgs, ...}: {
   services.xserver = {
     enable = true;
-    autorun = true;
+    autorun = false;
     
     windowManager.berry.enable = true; 
     desktopManager.runXdgAutostartIfNone = true;
     xkb.layout = "us";
 
-    displayManager = {
-      lightdm.enable = true;
-	  setupCommands = ''
-        ${pkgs.autorandr}/bin/autorandr --default default --change &
-	  '';
-    };
+    #displayManager = {
+    #  lightdm.enable = true;
+#	  setupCommands = ''
+#        ${pkgs.autorandr}/bin/autorandr --default default --change &
+#	  '';
+#    };
 
     videoDrivers = [ "nvidia" ];
   };

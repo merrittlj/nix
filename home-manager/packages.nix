@@ -13,5 +13,7 @@
     unstable.stm32cubemx
 
     programmer-calculator
+
+    fishPlugins.grc
   ];
 }

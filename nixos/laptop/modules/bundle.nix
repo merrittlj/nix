@@ -6,5 +6,6 @@
       ./touchpad.nix
       ./xorg.nix
       ./hardware.nix
+      ./power.nix
     ];
   }
