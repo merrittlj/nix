@@ -1,14 +1,15 @@
+{ pkgs, ... }:
 {
   programs.fish = {
     enable = true;
 
-    preferAbbrs = true;
-    shellAbbrs = [
+    #preferAbbrs = true;
+    shellAbbrs = {
       gr = "grep -r -n -H -C 3";
       v = "neovim";
-    ];
+    };
 
-    generateCompletions = true;
+    #generateCompletions = true;
 
     interactiveShellInit = ''
       set fish_greeting
@@ -37,5 +38,5 @@
     plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
     ];
-  }
+  };
 }

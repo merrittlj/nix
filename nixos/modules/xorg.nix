@@ -7,12 +7,12 @@
     desktopManager.runXdgAutostartIfNone = true;
     xkb.layout = "us";
 
-    #displayManager = {
-    #  lightdm.enable = true;
-#	  setupCommands = ''
-#        ${pkgs.autorandr}/bin/autorandr --default default --change &
-#	  '';
-#    };
+    displayManager = {
+      lightdm.enable = true;
+	  setupCommands = ''
+        ${pkgs.autorandr}/bin/autorandr --default default --change &
+	  '';
+    };
 
     videoDrivers = [ "nvidia" ];
   };
