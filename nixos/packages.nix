@@ -69,4 +69,6 @@
     #wqy_zenhei
 	#vistafonts-chs
   ];
+
+  programs.fish.enable = true;
 }
