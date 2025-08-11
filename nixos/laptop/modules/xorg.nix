@@ -3,5 +3,7 @@
     xkb.layout = "us";
     xkb.variant = "dvp";
     xkb.options = "ctrl:swapcaps";
+
+    videoDrivers = [ "modesetting" ];
   };
 }

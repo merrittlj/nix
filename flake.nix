@@ -2,11 +2,11 @@
   description = "System configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -14,9 +14,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    qtile-flake = {
+      url = "github:qtile/qtile";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "lucas";
@@ -31,6 +36,8 @@
               android_sdk.accept_license = true;
             };
           };
+
+          qtile = qtile-flake.packages.${final.system}.qtile;
         })
       ];
 
@@ -62,13 +69,13 @@
     in
     {
       nixosConfigurations = {
-        desktop = mkHost {
+        pluto = mkHost {
           hostModule = ./nixos/desktop/default.nix;
           homeModule = ./home-manager/desktop.nix;
           hostname = "pluto";
         };
 
-        laptop = mkHost {
+        saturn = mkHost {
           hostModule = ./nixos/laptop/default.nix;
           homeModule = ./home-manager/laptop.nix;
           hostname = "saturn";

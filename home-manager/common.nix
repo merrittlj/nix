@@ -2,7 +2,7 @@
 	imports = [
         ./packages.nix
 		./modules/bundle.nix
-        nixvim.homeManagerModules.nixvim
+        nixvim.homeModules.nixvim
 	];	
 
     news.display = "silent";
@@ -10,9 +10,12 @@
 		username = "${username}";
 		homeDirectory = "/home/${username}";
 		stateVersion = "24.05";
-                
-		file = {
-                  ".config/fcitx5/".source = ./src/fcitx5;
-		};
 	};
+    xdg.configFile = {
+      "qtile" = {
+        source = ./src/qtile;
+        recursive = true;
+      };
+      "fcitx5".source = ./src/fcitx5;
+    };
 }
