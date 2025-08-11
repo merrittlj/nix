@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     nitrogen
     gimp
-    okular
+    kdePackages.okular
     hugo
     unstable.stm32cubemx
 

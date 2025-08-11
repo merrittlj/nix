@@ -7,6 +7,7 @@
     shellAbbrs = {
       gr = "grep -r -n -H -C 3";
       v = "neovim";
+      rb = "nixos-rebuild switch --flake ~/nix#$(hostname)";
     };
 
     #generateCompletions = true;

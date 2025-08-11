@@ -1,16 +1,6 @@
 final: prev:
 
 {
-  # NixOS rebuild
-  rb = final.writeShellApplication {
-    name = "rb";
-    runtimeInputs = with final; [ nixos-rebuild hostname ];
-
-    text = ''
-      nixos-rebuild switch --flake "$FLAKE_PATH"#"$(hostname)"
-    '';
-  };
-
   # Find package path
   wh = final.writeShellApplication {
     name = "wh";
@@ -78,31 +68,4 @@ final: prev:
 	  echo "$(cat /sys/class/power_supply/BAT0/charge_full) / $(cat /sys/class/power_supply/BAT0/charge_full_design)" | bc -l
 	'';
   };
-
-  brightness-control = final.writeShellApplication {
-    name = "brightness-control";
-    runtimeInputs = [];
-
-    text = ''
-      brightnessControl="$1"
-      action="$2"
-      step="$3"
-
-      currentValue=$(cat "$brightnessControl")
-      newValue=0
-
-      if [ "$action" == "up" ]; then
-         newValue=$(("$currentValue" + "$step"))
-      elif [ "$action" == "down" ]; then
-         newValue=$(("$currentValue" - "$step"))
-      fi
-
-      if [ "$newValue" -lt 0 ]; then
-         newValue=0
-      fi
-
-      echo "$newValue" > "$brightnessControl"
-      currentValue=newValue
-	'';
-  };
-  }
+}
