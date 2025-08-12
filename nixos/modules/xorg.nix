@@ -18,4 +18,6 @@
 	  '';
     };
   };
+
+  services.urxvtd.enable = true;
 }

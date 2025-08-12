@@ -78,7 +78,7 @@ for vt in range(1, 8):
     )
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "1234"]
 
 for i in groups:
     keys.extend(
@@ -111,8 +111,8 @@ layouts = [
 
 widget_defaults = dict(
     font="Fantasque Sans Mono",
-    fontsize=12,
-    padding=3,
+    fontsize=36,
+    padding=6,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -123,7 +123,7 @@ screens = [
                 widget.CurrentLayout(),
                 widget.KeyboardLayout(
                     configured_keyboards=["us dvp", "us"],
-                    display_map={"us dvp": "Dvorak Prog.", "us": "Qwerty"},
+                    display_map={"us dvp": "DVP", "us": "US"},
                 ),
                 widget.Wallpaper(
                     directory="~/wallpapers",
@@ -140,15 +140,13 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("merrittlj config", name="name", foreground="#d75f5f"),
                 widget.GroupBox(),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
-                widget.QuickExit(),
             ],
-            24,
+            size = 50,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
