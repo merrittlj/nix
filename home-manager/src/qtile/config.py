@@ -2,10 +2,12 @@ import os
 
 import libqtile.resources
 from libqtile import bar, layout, qtile, widget
+from libqtile.widget.backlight import ChangeDirection
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
-from qvars import mod_super, mod_alt, home, terminal, browser
+import patches, hooks
+from qvars import *
 
 mod = mod_super
 
@@ -56,7 +58,10 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout")
+    Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout"),
+
+    Key([], "XF86MonBrightnessUp", lazy.widget["backlight"].change_backlight(ChangeDirection.UP)),
+    Key([], "XF86MonBrightnessDown", lazy.widget["backlight"].change_backlight(ChangeDirection.DOWN)),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -102,27 +107,15 @@ for i in groups:
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
-    font="sans",
+    font="Fantasque Sans Mono",
     fontsize=12,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
-logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 screens = [
     Screen(
         bottom=bar.Bar(
@@ -133,11 +126,12 @@ screens = [
                     display_map={"us dvp": "Dvorak Prog.", "us": "Qwerty"},
                 ),
                 widget.Wallpaper(
-                  directory=home + "/wallpapers/",
-                  random_selection=True,
-                  wallpaper_command=['feh', '--bg-fill'],
+                    directory="~/wallpapers",
                 ),
-                widget.GroupBox(),
+                widget.Backlight(
+                    backlight_name="gmux_backlight",
+                    change_command="brightnessctl set {0}%",
+                ),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -147,6 +141,7 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.TextBox("merrittlj config", name="name", foreground="#d75f5f"),
+                widget.GroupBox(),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
@@ -158,8 +153,8 @@ screens = [
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         background="#000000",
-        wallpaper=logo,
-        wallpaper_mode="center",
+        # DONT include wallpaper=.. here, it messes up the widget
+
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
@@ -209,7 +204,7 @@ wl_xcursor_theme = None
 wl_xcursor_size = 24
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
+# string besides java UI toolkits(and fastfetch); you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
 # this string if your java app doesn't work correctly. We may as well just lie
 # and say that we're a working one by default.

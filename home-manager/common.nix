@@ -12,10 +12,10 @@
 		stateVersion = "24.05";
 	};
     xdg.configFile = {
-      "qtile" = {
-        source = ./src/qtile;
-        recursive = true;
-      };
+      #"qtile" = {
+      #  source = ./src/qtile;
+      #  recursive = true;
+      #};
       "fcitx5".source = ./src/fcitx5;
     };
 }

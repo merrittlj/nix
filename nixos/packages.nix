@@ -52,6 +52,8 @@
     # Misc.
     home-manager
     pavucontrol
+    brightnessctl
+    pciutils
   ];
   
   fonts.packages = with pkgs; [
