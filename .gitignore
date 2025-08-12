@@ -1,3 +1,4 @@
 *.swp
 store/
 var/
+*__pycache__*
