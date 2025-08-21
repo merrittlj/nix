@@ -2,6 +2,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    kicad
     nitrogen
     gimp
     kdePackages.okular

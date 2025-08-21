@@ -10,6 +10,8 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  hardware.nvidia.open = true;
+
   fileSystems."/" =
     { device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
