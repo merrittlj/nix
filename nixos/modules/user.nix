@@ -8,4 +8,5 @@
       };
       mutableUsers = false;
     };
+    nix.settings.trusted-users = [ "root" "lucas" ];
 }

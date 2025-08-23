@@ -8,6 +8,7 @@
     kdePackages.okular
     hugo
     unstable.stm32cubemx
+    cura-appimage
 
     programmer-calculator
 
