@@ -6,5 +6,6 @@
       ./autorandr.nix
       ./language.nix
       ./udev.nix
+      ./openvpn.nix
     ];
   }

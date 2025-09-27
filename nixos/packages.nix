@@ -54,6 +54,8 @@
     pavucontrol
     brightnessctl
     pciutils
+
+    openvpn
   ];
   
   fonts.packages = with pkgs; [

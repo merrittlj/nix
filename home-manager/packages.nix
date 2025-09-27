@@ -13,5 +13,8 @@
     programmer-calculator
 
     fishPlugins.grc
+
+    qbittorrent
+    koodo-reader
   ];
 }
