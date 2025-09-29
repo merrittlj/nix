@@ -25,18 +25,8 @@ host_bar = bar.Bar(
                 widget.Battery(
                     battery="BAT0",
                 ),
-                widget.Wlan(
-                    interface="wlp4s0",
-                    format="{essid} {percent:2.0%}",
-                ),
                 widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.WindowTabs(),
                 widget.GroupBox(),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
