@@ -2,17 +2,14 @@
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    kicad
+    kicad-small
     nitrogen
     gimp
     kdePackages.okular
     hugo
-    unstable.stm32cubemx
     cura-appimage
 
     programmer-calculator
-
-    fishPlugins.grc
 
     qbittorrent
     koodo-reader

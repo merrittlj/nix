@@ -23,6 +23,8 @@ in
 	  expandtab = true;
 	  autoindent = true;
 
+      mouse = "a";
+
 	  relativenumber = true;
 	  display = "truncate";
 	  wrap = false;
@@ -37,30 +39,41 @@ in
 	  ttyfast = true;
 
       termguicolors = true;
-      background = "dark";
+      background = "light";
+
+      everforest_background = "soft";
 	};
 
 	plugins = {
-      airline.enable = true;
+      lightline = {
+        enable = true;
+
+        settings = { 
+          colorscheme = "everforest"; 
+
+          active = {
+            left = [
+              [
+                "mode"
+                "paste"
+              ]
+              [
+                "readonly"
+                "filename"
+                "modified"
+              ]
+            ];
+          };
+        };
+      };
 	  autoclose.enable = true;
       nvim-surround.enable = true;
 	  fugitive.enable = true;
 	  commentary.enable = true;
 	};
 
-    extraPlugins = with pkgs.vimPlugins; [
-      (mkVimPlugin "themery" "zaldih" "themery.nvim" "v2.0.0" "sha256-MbNaOIxiYmju9R+mTI+qtbwG0UNt8meNcOS5uO0pRfw=")
-    ];
-    
-    extraConfigLua = ''
-      require("themery").setup({
-        themes = {"ayu", ... },
-        livePreview = true, -- Apply theme while picking. Default to true.
-      })
-    '';
-
-    colorschemes.ayu.enable = true;
-    colorscheme = "ayu";
+    colorschemes.everforest.enable = true;
+    colorscheme = "everforest";
     
     keymaps = [
       # Use jk/kj to escape insert mode
@@ -70,8 +83,6 @@ in
       (mkKeymapWithOpts "n" "<C-l>" ":nohls <CR> <C-l>" { silent = true; })
       # Open files relative to the current one
       (mkKeymap "n" ",e" ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-      (mkKeymap "n" ",t" ":tabe <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-      (mkKeymap "n" ",s" ":split <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
       # Quote double quotes in current line
       (mkKeymapWithOpts "n" "qs" "0 :let hls = &hlsearch <CR> :set nohlsearch <CR> :.s#\"#\\\\\"#g <CR> :if hls | let @/ = '' | endif <CR> :let &hlsearch = hls <CR> 0" { silent = true; })
     ];

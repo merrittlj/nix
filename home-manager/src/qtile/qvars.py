@@ -8,5 +8,5 @@ mod_alt = "mod1"
 home = os.path.expanduser("~")
 
 # apps
-terminal = "urxvtc"
+terminal = "kitty"
 browser = "firefox"
