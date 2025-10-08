@@ -1,18 +1,19 @@
 {
   programs.kitty = {
     enable = true;
-    theme = "Solarized Light";
+    theme = "Everforest Light Soft";
 	settings = {
 
-	  # background_opacity = "1.0";
-	  # dim_opacity = "0.5";
+      background_opacity = "1.0";
+      dynamic_background_opacity = "no";
+      dim_opacity = "1.0";
 
 	  font_family = "Fantasque Sans Mono";
-	  font_size = "12.0";
+	  font_size = "14.0";
 	  disable_ligatures = "never";
 
-	  cursor_shape = "block";
-	  cursor_blink_interval = 0;
+	  # cursor_shape = "block";
+	  # cursor_blink_interval = 0;
 
 	  scrollback_lines = 2000;
 	  touch_scroll_multiplier = "0.0";

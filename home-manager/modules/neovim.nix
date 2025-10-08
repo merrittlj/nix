@@ -40,39 +40,42 @@ in
 
       termguicolors = true;
       background = "light";
+	};
 
+	globals = {
       everforest_background = "soft";
 	};
 
 	plugins = {
-      lightline = {
+      lualine = {
         enable = true;
 
         settings = { 
-          colorscheme = "everforest"; 
-
-          active = {
-            left = [
-              [
-                "mode"
-                "paste"
-              ]
-              [
-                "readonly"
-                "filename"
-                "modified"
-              ]
-            ];
-          };
+          theme = "everforest"; 
         };
       };
-	  autoclose.enable = true;
-      nvim-surround.enable = true;
 	  fugitive.enable = true;
 	  commentary.enable = true;
+
+	  treesitter = {
+	    enable = true;
+	    
+	    settings = {
+	      highlight.enable = true;
+	    };
+	  };
 	};
 
-    colorschemes.everforest.enable = true;
+    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
+      name = "everforest";
+      src = pkgs.fetchFromGitHub {
+        owner = "neanias";
+        repo = "everforest-nvim";
+        rev = "d2936185a6d266def29fd7b523d296384580ef08";
+        hash = "sha256-nOMUb55P5mqUKD5w5xppJ94+gGnZbllJBoAiQLFFLA0=";
+      };
+    })];
+
     colorscheme = "everforest";
     
     keymaps = [
@@ -83,8 +86,6 @@ in
       (mkKeymapWithOpts "n" "<C-l>" ":nohls <CR> <C-l>" { silent = true; })
       # Open files relative to the current one
       (mkKeymap "n" ",e" ":e <C-R>=expand(\"%:p:h\") . \"/\" <CR>")
-      # Quote double quotes in current line
-      (mkKeymapWithOpts "n" "qs" "0 :let hls = &hlsearch <CR> :set nohlsearch <CR> :.s#\"#\\\\\"#g <CR> :if hls | let @/ = '' | endif <CR> :let &hlsearch = hls <CR> 0" { silent = true; })
     ];
   };
 }

@@ -31,6 +31,7 @@
     socat
     appimage-run
     usbutils
+    ripgrep
 
     # GUI utils
     feh

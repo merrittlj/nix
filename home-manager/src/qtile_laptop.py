@@ -28,9 +28,6 @@ host_bar = bar.Bar(
                 widget.Prompt(),
                 widget.WindowTabs(),
                 widget.GroupBox(),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
             size = 50,

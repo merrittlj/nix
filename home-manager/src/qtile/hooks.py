@@ -1,4 +1,7 @@
+import subprocess
+
 from libqtile import hook
+from qvars import *
 
 @hook.subscribe.startup_complete
 def startup_complete_wallpaper():
@@ -8,3 +11,7 @@ def startup_complete_wallpaper():
     for w in qtile.widgets_map.values():
         if isinstance(w, Wallpaper):
             w.set_wallpaper()
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.call(home + "/.config/qtile/autostart.sh")
