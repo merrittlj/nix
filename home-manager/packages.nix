@@ -13,5 +13,8 @@
 
     qbittorrent
     koodo-reader
+
+    fishPlugins.grc
+    grc
   ];
 }
