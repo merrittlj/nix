@@ -1,6 +1,6 @@
 {
   programs.kitty = {
-    enable = true;
+    enable = false;
     theme = "Everforest Light Soft";
 	settings = {
 

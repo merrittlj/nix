@@ -1,6 +1,6 @@
 {
   programs.urxvt = {
-      enable = false;
+      enable = true;
       fonts = ["xft:Fantasque Sans Mono:size=14"];
       scroll = {
         bar.enable = false;
@@ -10,45 +10,48 @@
       };
 
       extraConfig = {
-        # special
-        foreground = "#93a1a1";
-        background = "#141c21";
-        cursorColor = "#afbfbf";
-        
-        # black
-        color0 = "#263640";
-        color8 = "#4a697d";
-        
-        # red
-        color1 = "#d12f2c";
-        color9 = "#fa3935";
-        
-        # green
-        color2 = "#819400";
-        color10 = "#a4bd00";
-        
-        # yellow
-        color3 = "#b08500";
-        color11 = "#d9a400";
-        
-        # blue
-        color4 = "#2587cc";
-        color12 = "#2ca2f5";
-        
-        # magenta
-        color5 = "#696ebf";
-        color13 = "#8086e8";
-        
-        # cyan
-        color6 = "#289c93";
-        color14 = "#33c5ba";
-        
-        # white
-        color7 = "#bfbaac";
-        color15 = "#fdf6e3";
+        # Special
+        foreground = "#5c6a72";
+        background = "#f3ead3";
+        cursorColor = "#5c6a72";
+        pointerColorBackground = "#f3ead3";
+        pointerColorForeground = "#5c6a72";
 
+        # Black
+        color0 = "#708089";
+        color8 = "#829181";
+
+        # Red
+        color1 = "#f85552";
+        color9 = "#e66868";
+
+        # Green
+        color2 = "#8da101";
+        color10 = "#93b259";
+
+        # Yellow
+        color3 = "#dfa000";
+        color11 = "#dfa000";
+
+        # Blue
+        color4 = "#3a94c5";
+        color12 = "#3a94c5";
+
+        # Magenta
+        color5 = "#df69ba";
+        color13 = "#df69ba";
+
+        # Cyan
+        color6 = "#35a77c";
+        color14 = "#35a77c";
+
+        # White
+        color7 = "#939f91";
+        color15 = "#a6b0a0";
+
+        # Cursor behavior
         cursorBlink = "false";
         cursorUnderline = "false";
-      };
+    };
   };
 }

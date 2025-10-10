@@ -22,5 +22,5 @@
     };
   };
 
-  services.urxvtd.enable = false;
+  services.urxvtd.enable = true;
                       }
