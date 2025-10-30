@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }: {
+
   nix.package = pkgs.nixVersions.latest;
 
   nixpkgs.config.allowUnfree = true;
@@ -6,6 +7,12 @@
   nixpkgs.config.permittedInsecurePackages = [
     "broadcom-sta-6.30.223.271-57-6.12.41"
   ];
+
+  # let
+  #   modulePkgs = inputs.self.packages.${pkgs.system};
+  # in {
+  #   environment.systemPackages = builtins.attrValues modulePkgs;
+  # }
 
   environment.systemPackages = with pkgs; [
     # Development

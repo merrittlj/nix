@@ -1,7 +1,7 @@
 {
   programs.urxvt = {
       enable = true;
-      fonts = ["xft:Fantasque Sans Mono:size=14"];
+      fonts = ["xft:Fantasque Sans Mono:size=18"];
       scroll = {
         bar.enable = false;
         keepPosition = true;

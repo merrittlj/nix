@@ -120,6 +120,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1761672384,
+        "narHash": "sha256-o9KF3DJL7g7iYMZq9SWgfS1BFlNbsm6xplRjVlOCkXI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "08dacfca559e1d7da38f3cf05f1f45ee9bfd213c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -192,7 +208,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
-        "qtile-flake": "qtile-flake"
+        "qtile-flake": "qtile-flake",
+        "wrappers": "wrappers"
       }
     },
     "systems": {
@@ -224,6 +241,20 @@
         "repo": "default",
         "type": "github"
       }
+    },
+    "wrappers": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "path": "wrappers",
+        "type": "path"
+      },
+      "original": {
+        "path": "wrappers",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",

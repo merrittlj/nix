@@ -2,6 +2,8 @@
   description = "System configuration";
 
   inputs = {
+    self.submodules = true;
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -19,9 +21,11 @@
       url = "github:qtile/qtile";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wrappers.url = ./wrappers;
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, wrappers, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "lucas";
@@ -40,6 +44,8 @@
           qtile = qtile-flake.packages.${final.system}.qtile;
         })
       ];
+
+      configs = import ./configs.nix { pkgs = nixpkgs.legacyPackages.${system}; mods = wrappers.wrapperModules; };
 
       # Function to make a NixOS system with Home Manager built-in
       mkHost = { hostModule, homeModule, hostname }:
@@ -68,6 +74,9 @@
         };
     in
     {
+      # Exports for nix run .#program or nix run github:username/nix#program
+      packages.${system} = configs;
+
       nixosConfigurations = {
         pluto = mkHost {
           hostModule = ./nixos/desktop/default.nix;

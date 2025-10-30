@@ -8,7 +8,7 @@
       d = "doas";
       v = "neovim";
       rb = "doas nixos-rebuild switch --flake $FLAKE_PATH#$(hostname)";
-      i_hate_java = "_JAVA_AWT_WM_NONREPARENTING=1 ";
+      ihatejava = "_JAVA_AWT_WM_NONREPARENTING=1 ";
     };
 
     generateCompletions = true;
