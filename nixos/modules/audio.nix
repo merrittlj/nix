@@ -1,3 +1,4 @@
+{ host, ... }:
 {
   security.rtkit.enable = true;
   services.pipewire = {
@@ -6,12 +7,12 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  services.pulseaudio = {
-    enable = false;
-    support32Bit = true;
-    
-    extraConfig = ''
-      set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo
+
+  boot.extraModprobeConfig = { 
+    laptop = ''
+      options snd-hda-intel model=imac27_122
     '';
-  };
+
+    desktop = '''';
+  }.${host};
 }

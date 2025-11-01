@@ -1,11 +1,19 @@
 { pkgs, lib, ... }:
 let
-  mkKeymap = mode: key: action: { inherit mode key action; };
+  mkKeymap = 
+    mode: key: action: 
+    { inherit mode key action; };
   mkKeymapWithOpts =
     mode: key: action: opts:
     (mkKeymap mode key action) // { options = opts; };
   
-  mkVimPlugin = name: owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin { inherit name; src = pkgs.fetchFromGitHub { inherit owner repo rev; hash = (if hash == null then "sha256-0000000000000000000000000000000000000000000=" else hash); }; };
+  mkVimPlugin = 
+    name: owner: repo: rev: hash: 
+    pkgs.vimUtils.buildVimPlugin { 
+      inherit name; src = pkgs.fetchFromGitHub { 
+        inherit owner repo rev; hash = (if hash == null then "sha256-0000000000000000000000000000000000000000000=" else hash); 
+      };
+    };
 in
 {
   programs.nixvim = {
@@ -66,15 +74,10 @@ in
 	  };
 	};
 
-    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
-      name = "everforest";
-      src = pkgs.fetchFromGitHub {
-        owner = "neanias";
-        repo = "everforest-nvim";
-        rev = "d2936185a6d266def29fd7b523d296384580ef08";
-        hash = "sha256-nOMUb55P5mqUKD5w5xppJ94+gGnZbllJBoAiQLFFLA0=";
-      };
-    })];
+    extraPlugins = [
+      # mkVimPlugin name owner repo rev hash 
+      (mkVimPlugin "everforest" "neanias" "everforest-nvim" "d2936185a6d266def29fd7b523d296384580ef08" "sha256-nOMUb55P5mqUKD5w5xppJ94+gGnZbllJBoAiQLFFLA0=")
+    ];
 
     colorscheme = "everforest";
     

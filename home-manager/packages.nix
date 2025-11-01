@@ -14,6 +14,8 @@
     qbittorrent
     koodo-reader
 
+    maim
+
     fishPlugins.grc
     grc
   ];

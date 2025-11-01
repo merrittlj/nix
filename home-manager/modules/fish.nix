@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
 {
   programs.fish = {
     enable = true;
@@ -6,9 +6,10 @@
     preferAbbrs = true;
     shellAbbrs = {
       d = "doas";
-      v = "neovim";
-      rb = "doas nixos-rebuild switch --flake $FLAKE_PATH#$(hostname)";
-      i_hate_java = "_JAVA_AWT_WM_NONREPARENTING=1 ";
+      v = "nvim";
+      p = "python";
+      rb = "doas nixos-rebuild switch --flake $FLAKE_PATH#${host}";
+      ihatejava = "_JAVA_AWT_WM_NONREPARENTING=1";
     };
 
     generateCompletions = true;
@@ -39,9 +40,9 @@
         builtin echo -ns $PROMPT
       '';
 
-      # Invocation: pythonEnv 3 package1 package2 .. packageN
-      # or:         pythonEnv 2 ..
-      "pythonEnv" = ''
+      # Invocation: pythonenv 3 package1 package2 .. packageN
+      # or:         pythonenv 2 ..
+      "pythonenv" = ''
         if set -q argv[2]
             set argv $argv[2..-1]
         end

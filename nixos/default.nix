@@ -1,11 +1,9 @@
-{ inputs, config, hostname, ... }:
-
+{ inputs, hostname, host, helpers, ... }:
 {
   imports = [
-      ./packages.nix
-      ./modules/bundle.nix
-  ];
-  
+    ./packages.nix
+  ] ++ (import ./bundle.nix { inherit host helpers; }); # bundles outside module evaluation
+
   # Hostname
   networking.hostName = "${hostname}";
   

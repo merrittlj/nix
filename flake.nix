@@ -41,45 +41,38 @@
         })
       ];
 
+      helpers = import ./helpers.nix { lib = nixpkgs.lib; };
+
       # Function to make a NixOS system with Home Manager built-in
-      mkHost = { hostModule, homeModule, hostname }:
+      mkHost =
+        host: hostname:
         nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = {
-            inherit username hostname;
+            inherit host username hostname helpers;
           };
 
           modules = [
+            ./nixos/default.nix
             { nixpkgs.overlays = overlays; }
-            hostModule
 
             # Home Manager integration
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = import homeModule;
+              home-manager.users.${username} = ./home-manager/default.nix;
               home-manager.extraSpecialArgs = {
-                inherit username nixvim;
+                inherit host username hostname helpers nixvim;
               };
             }
           ];
         };
-    in
-    {
+    in {
       nixosConfigurations = {
-        pluto = mkHost {
-          hostModule = ./nixos/desktop/default.nix;
-          homeModule = ./home-manager/desktop.nix;
-          hostname = "pluto";
-        };
-
-        saturn = mkHost {
-          hostModule = ./nixos/laptop/default.nix;
-          homeModule = ./home-manager/laptop.nix;
-          hostname = "saturn";
-        };
+        desktop = mkHost "desktop" "pluto"; 
+        laptop = mkHost "laptop" "saturn";
       };
     };
 }
