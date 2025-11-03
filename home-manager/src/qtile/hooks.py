@@ -12,6 +12,7 @@ def startup_complete_wallpaper():
         if isinstance(w, Wallpaper):
             w.set_wallpaper()
 
-@hook.subscribe.startup_once
-def autostart():
-    subprocess.call(home + "/.config/qtile/autostart.sh")
+# breaks w/ symlinks
+# @hook.subscribe.startup_once
+# def autostart():
+    # subprocess.call(home + "/.config/qtile/autostart.sh")

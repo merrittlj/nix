@@ -53,9 +53,9 @@ keys = [
         desc="Toggle fullscreen on the focused window",
     ),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "c", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout"),
 
@@ -69,8 +69,8 @@ keys = [
 for vt in range(1, 8):
     keys.append(
         Key(
-            ["control", "mod1"],
-            f"f{vt}",
+            [mod, "control"],
+            f"{vt}",
             lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
             desc=f"Switch to VT{vt}",
         )
