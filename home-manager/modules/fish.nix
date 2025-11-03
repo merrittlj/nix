@@ -53,6 +53,10 @@
  
         nix-shell -p $ppkgs
       '';
+
+      "xc" = ''
+        eval $argv[1..-1] &| xclip -sel clip
+      '';
     };
 
     plugins = [

@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = false;
-    theme = "Everforest Light Soft";
+    themeFile = "Everforest Light Soft";
 	settings = {
 
       background_opacity = "1.0";
