@@ -19,31 +19,36 @@ backend = ""
 light = ""
 differentiator = "222222"
 
+wallpaper_loc = home / ".local/share/background.png"
 
-def wallpaper_setter(image):
-    subprocess.call(["nitrogen", "--set-zoom-fill", image])
+def random_wallpaper(*args):
+    images = [p for p in Path(wallpapers).rglob('*') if p.suffix.lower() in [".jpeg", ".jpg", ".png"]]
+    selected_wallpaper = str(random.choice(images))
+    # Set cache, nothing else
+    subprocess.check_call(["wal", "-qnste", "-i", selected_wallpaper])
+    subprocess.check_call(["ln", "-sf", selected_wallpaper, wallpaper_loc])
 
-@hook.subscribe.startup
-def restore_wallpaper():
-    if len(wallpaper) > 0:
-        wallpaper_setter(wallpaper)
+    qtile.reload_config()
 
-# Import colors from Pywal
-with open(str(home / ".cache/wal/colors.json")) as wal_import:
-    data = json.load(wal_import)
-    wallpaper = data["wallpaper"]
-    colors = data["colors"]
-    val_colors = list(colors.values())
-    def getList(val_colors):
-        return [*val_colors]
-      
-    def init_colors():
-        return [*val_colors]
-
-color = init_colors()
+# Load Pywal/main colors
+def load_colors():
+    try:
+        with open(str(home / ".cache/wal/colors.json")) as wal_import:
+            data = json.load(wal_import)
+            wallpaper = data["wallpaper"]
+            colors = data["colors"]
+            val_colors = list(colors.values())
+            return wallpaper, [*val_colors]
+    except FileNotFoundError:
+        random_wallpaper() # also reloads config
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 # Generate secondary pallete 
 def secondary_pallete(colors, differentiator):
+    if colors is None:
+        return None
+
     updated_colors = []
     for color in colors:
         # Remove the '#' symbol
@@ -63,14 +68,12 @@ def secondary_pallete(colors, differentiator):
 
     return updated_colors
 
+# must be called here and not in a startup hook: so colors are ready for other files
+# colors must be set on file init and not on startup!
+wallpaper, color = load_colors()
 secondary_color = secondary_pallete(color, differentiator)
 
-def random_wallpaper(qtile):
-    images = [p for p in Path(wallpapers).rglob('*') if p.suffix.lower() in [".jpeg", ".jpg", ".png"]]
-    selected_wallpaper = str(random.choice(images))
-    wallpaper_setter(selected_wallpaper)
-    subprocess.call(["wal", "-n", "-i", selected_wallpaper, light])
-    subprocess.call(["ln", "-s", selected_wallpaper, str(home / ".local/share/background.png")])
-
-    qtile.reload_config()
-
+# wallpaper must be set on startup and not on file init!
+@hook.subscribe.startup
+def set_wallpaper():
+    subprocess.call(["nitrogen", "--set-zoom-fill", wallpaper])

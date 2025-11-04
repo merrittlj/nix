@@ -21,9 +21,9 @@
 
     displayManager = {
         lightdm.enable = true;
-        setupCommands = ''
-            ${pkgs.autorandr}/bin/autorandr --default ${host} --change &
-        '';
+        # setupCommands = ''
+            # ${pkgs.autorandr}/bin/autorandr --default ${host} --change &
+        # '';
     };
   };
 }
