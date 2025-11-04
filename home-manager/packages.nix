@@ -17,5 +17,8 @@
 
     fishPlugins.grc
     grc
+
+    pywal
+    colorz
   ];
 }

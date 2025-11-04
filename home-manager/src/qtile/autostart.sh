@@ -1,2 +1,2 @@
 #!/bin/sh
-#kitty -1 --start-as=hidden &> /dev/null &
+urxvtd -q -o -f &
