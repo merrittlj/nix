@@ -21,10 +21,19 @@ differentiator = "222222"
 
 wallpaper_loc = home / ".local/share/background.png"
 
+def del_wallpaper(qtile, loc):
+    try:
+        os.remove(loc)
+        random_wallpaper()
+    except FileNotFoundError:
+        print(f"Wallpaper to delete ({loc}) not found!")
+    except Exception as e:
+        print(f"Unexpected error in deleting wallpaper: {e}")
+
 def random_wallpaper(*args):
     images = [p for p in Path(wallpapers).rglob('*') if p.suffix.lower() in [".jpeg", ".jpg", ".png"]]
     selected_wallpaper = str(random.choice(images))
-    # Set cache, nothing else
+    # Set cache, nothing else  TODO: how to add light, backend support?
     subprocess.check_call(["wal", "-qnste", "-i", selected_wallpaper])
     subprocess.check_call(["ln", "-sf", selected_wallpaper, wallpaper_loc])
 
@@ -36,13 +45,15 @@ def load_colors():
         with open(str(home / ".cache/wal/colors.json")) as wal_import:
             data = json.load(wal_import)
             wallpaper = data["wallpaper"]
+            special = data["special"]
             colors = data["colors"]
             val_colors = list(colors.values())
-            return wallpaper, [*val_colors]
+            val_special_colors = list(special.values())
+            return wallpaper, [*val_colors], [*val_special_colors]
     except FileNotFoundError:
         random_wallpaper() # also reloads config
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"Unexpected error in loading colors: {e}")
 
 # Generate secondary pallete 
 def secondary_pallete(colors, differentiator):
@@ -70,10 +81,21 @@ def secondary_pallete(colors, differentiator):
 
 # must be called here and not in a startup hook: so colors are ready for other files
 # colors must be set on file init and not on startup!
-wallpaper, color = load_colors()
-secondary_color = secondary_pallete(color, differentiator)
+# colors is [ "#color0", "#color1", ... "#color15" ]
+# special_colors is [ "#background", "#foreground", "#cursor" ]
+wallpaper, colors, special_colors = load_colors()
+secondary_colors = secondary_pallete(colors, differentiator)
 
 # wallpaper must be set on startup and not on file init!
 @hook.subscribe.startup
 def set_wallpaper():
-    subprocess.call(["nitrogen", "--set-zoom-fill", wallpaper])
+    out = subprocess.check_output(["xrandr", "--listactivemonitors"]).decode('utf-8')
+    # split after newline, then extract number after Monitors: 
+    screen_count = int(out.split('\n', 1)[0].split(':', 1)[1].strip())
+    for x in range(screen_count):
+        subprocess.call(["nitrogen", "--set-zoom-fill", wallpaper, "--force-setter=xinerama", f"--head={x}"])
+
+# startup_once means not on restarts
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.check_call(str(config / "autostart.sh"), stdout=subprocess.DEVNULL)

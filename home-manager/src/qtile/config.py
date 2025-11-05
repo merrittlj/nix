@@ -3,10 +3,10 @@ import os
 import libqtile.resources
 from libqtile import bar, layout, qtile, widget
 from libqtile.widget.backlight import ChangeDirection
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match
 from libqtile.lazy import lazy
 
-import patches, hooks
+from patches import *
 from qvars import *
 from host import *
 
@@ -58,6 +58,7 @@ keys = [
     Key([mod], "c", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     Key([mod], "n", lazy.function(random_wallpaper), desc="Random wallpaper"),
+    Key([mod], "v", lazy.function(del_wallpaper, wallpaper), desc="Delete current wallpaper"),
 
     Key([mod], "space", lazy.widget["keyboardlayout"].next_keyboard(), desc="Next keyboard layout"),
 
@@ -108,19 +109,6 @@ for i in groups:
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.Max(),
-]
-
-screens = [
-    Screen(
-        bottom=host_bar, # Host-specific bar, easiest way to manage
-        background="#000000",
-        # DONT include wallpaper=.. here, it messes up the widget
-
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
 ]
 
 # Drag floating layouts.

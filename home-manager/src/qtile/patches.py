@@ -3,15 +3,6 @@ from libqtile.widget import Wallpaper, Backlight
 from libqtile.widget.backlight import ChangeDirection
 from libqtile.command.base import expose_command
 
-# Original _configure code:
-# _TextBox._configure(self, qtile, bar)
-# if not self.bar.screen.wallpaper:
-#    self.set_wallpaper()
-
-# We patch the function to only configure the textbox(don't set the wallpaper), so we can set the wallpaper later
-# in a hook once qtile is fully initialized and won't clear it
-# Wallpaper._configure = lambda self, qtile, bar: _TextBox._configure(self, qtile, bar)
-
 # This function is identical to the original change_backlight, except we round new and now to avoid floating
 # point crap causing steps to not be exactly the specified percent
 @expose_command()
