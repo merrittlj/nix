@@ -58,6 +58,9 @@
     pciutils
 
     openvpn
+
+    sops
+    age
   ];
   
   fonts.packages = with pkgs; [

@@ -19,9 +19,14 @@
       url = "github:qtile/qtile";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "lucas";
@@ -50,12 +55,14 @@
           inherit system;
 
           specialArgs = {
-            inherit host username hostname helpers;
+            inherit host username hostname helpers sops-nix;
           };
 
           modules = [
             ./nixos/default.nix
             { nixpkgs.overlays = overlays; }
+
+            sops-nix.nixosModules.sops
 
             # Home Manager integration
             home-manager.nixosModules.home-manager

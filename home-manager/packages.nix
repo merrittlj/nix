@@ -20,5 +20,7 @@
 
     pywal
     colorz
+
+    slack
   ];
 }
