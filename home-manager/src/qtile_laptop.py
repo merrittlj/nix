@@ -16,10 +16,10 @@ main_bar = bar.Bar(
                     configured_keyboards=["us dvp", "us"],
                     display_map={"us dvp": "DVP", "us": "US"},
                 ),
-                widget.Wallpaper(
-                    directory="~/wallpapers",
-                    label="",
-                ),
+                # widget.Wallpaper(
+                #     directory="~/wallpapers",
+                #     label="",
+                # ),
                 widget.Backlight(
                     backlight_name="gmux_backlight",
                     change_command="brightnessctl set {0}%",

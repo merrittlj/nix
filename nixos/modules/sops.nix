@@ -11,8 +11,8 @@ in {
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
     secrets = {
-      "ssh_key/andesite_git" = { inherit owner; };
-      "ssh_key/personal_git" = { inherit owner; };
+      "ssh_key/andesite_git" = { inherit owner; mode = "0600"; };
+      "ssh_key/personal_git" = { inherit owner; mode = "0600"; };
       "gpg_key/andesite_git" = { inherit owner; };
     };
   };
@@ -26,16 +26,19 @@ in {
     wantedBy = [ "default.target" ];
   };
 
-  systemd.user.services.sops-ssh-key = {
-    description = "Add sops-managed SSH key to ssh-agent";
+  programs.ssh.startAgent = true;
+
+  systemd.user.services.ssh-add-keys = {
+    description = "Add SSH keys to agent";
+    wantedBy = [ "default.target" ];
     after = [ "ssh-agent.service" ];
     serviceConfig = {
-      ExecStart = ''
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "ssh-add-keys" ''
         ${pkgs.openssh}/bin/ssh-add ${config.sops.secrets."ssh_key/andesite_git".path}
         ${pkgs.openssh}/bin/ssh-add ${config.sops.secrets."ssh_key/personal_git".path}
       '';
-      Restart = "on-failure";
+      Environment = "SSH_AUTH_SOCK=%t/ssh-agent.socket";
     };
-    wantedBy = [ "default.target" ];
   };
 }
