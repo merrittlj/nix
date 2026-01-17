@@ -80,7 +80,7 @@ for vt in range(1, 8):
     )
 
 
-groups = [Group(i) for i in "1234"]
+groups = [Group(f"{x+1}", label="") for x in range(4)]
 
 for i in groups:
     keys.extend(

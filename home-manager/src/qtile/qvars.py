@@ -21,6 +21,8 @@ differentiator = "222222"
 
 wallpaper_loc = home / ".local/share/background.png"
 
+transparent="#000000" + "00";
+
 def del_wallpaper(qtile, loc):
     try:
         os.remove(loc)

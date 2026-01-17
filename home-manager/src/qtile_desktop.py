@@ -1,69 +1,80 @@
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile
 from libqtile.config import Screen
+from qtile_extras import widget
+from qtile_extras.widget.decorations import RectDecoration
 from qvars import *
 
 widget_defaults = dict(
-    font="Fantasque Sans Mono",
-    fontsize=18,
+    font="FantasqueSansM Nerd Font Mono Bold",
+    fontsize=20,
     padding=6,
 )
 extension_defaults = widget_defaults.copy()
 
-main_bar = bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.KeyboardLayout(
-                    configured_keyboards=["us", "us dvp"],
-                    display_map={"us dvp": "DVP", "us": "US"},
-                ),
-                # wallpaper widget is unnecessary and limited
-                widget.Prompt(),
-                widget.WindowTabs(),
-                widget.GroupBox(),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            size = 25,
+widgets_list = [
+    # widget.CurrentLayout(),
+    # widget.Prompt(),
+    # widget.WindowTabs(),
+    
+    ## Left
+    widget.Image(
+        filename='~/.config/qtile/sigil.png',
+        margin=2,
 
-            background=special_colors[0],
-            foreground=special_colors[1],
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-);
+        # background=colors[0]
+        decorations=[RectDecoration(colour=color[0], radius=7, filled=True)],
+    ),
 
-side_bar = bar.Bar(
-            [
-                widget.Prompt(),
-                widget.WindowTabs(),
-                widget.GroupBox(),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            size = 25,
+    widget.Spacer(
+        length=5,
+        background=transparent
+    ),
+    
+    widget.GroupBox(
+        highlight_method='block',
+        rounded=True,
+    
+        disable_drag=True,
+        use_mouse_wheel=False,
 
-            background=special_colors[0],
-            foreground=special_colors[1],
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-);
+        background=colors[0]
+    ),
+    
+    ## Middle
+    widget.Spacer(length=bar.STRETCH),
+    
+    ## Right
+    widget.PulseVolume(
+        font="FantasqueSansM Nerd Font Mono",
+        fontsize=36,
+        emoji=True,
+        # Muted, low, medium, high
+        emoji_list=['','','','']
+    ),
+    
+    widget.Clock(format="%b %d · %H:%M"),
+    
+    ## Not displayed
+    widget.KeyboardLayout(
+        configured_keyboards=["us", "us dvp"],
+        # display_map={"us dvp": "DVP", "us": "US"},
+        display_map={"us dvp": "", "us": ""},
+    )
+];
+
+def make_bar():
+    ret = bar.Bar(
+        widgets_list,
+        size=30,
+        margin=[15,60,6,60],
+        border_width=[0,0,0,0],
+
+        background=transparent,
+        foreground=special_colors[1],
+    );
+    return ret
 
 screens = [
-    Screen( # Main
-        bottom=main_bar, # Host-specific bar, easiest way to manage
-        background="#000000",
-        # DONT include wallpaper=.. here, it messes up the widget
-
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
-    Screen( # Side
-        bottom=side_bar, # Host-specific bar, easiest way to manage
-        background="#000000",
-        # DONT include wallpaper=.. here, it messes up the widget
-
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
+    Screen(top=make_bar()), # Main
+    Screen(top=make_bar()), # Side
 ]

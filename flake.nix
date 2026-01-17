@@ -17,7 +17,7 @@
 
     qtile-flake = {
       url = "github:qtile/qtile";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     sops-nix = {

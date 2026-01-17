@@ -73,7 +73,10 @@
     smiley-sans
 	lxgw-wenkai
 	lxgw-neoxihei
-    fantasque-sans-mono
+
+    nerd-fonts.ubuntu
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.fantasque-sans-mono
     # Enabling these seems to override the default font in Firefox
     #wqy_zenhei
 	#vistafonts-chs

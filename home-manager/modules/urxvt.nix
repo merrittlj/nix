@@ -3,7 +3,7 @@
   programs.urxvt = {
       enable = true;
       fonts = [
-        "xft:Fantasque Sans Mono:size=${{laptop = "14"; desktop = "18";}.${host} or "14"}"
+        "xft:FantasqueSansM Nerd Font Mono:size=${{laptop = "14"; desktop = "18";}.${host} or "14"}"
       ];
 
       scroll = {

@@ -9,8 +9,12 @@
     windowManager.qtile = {
       enable = true;
       package = pkgs.qtile;
-      extraPackages = python313Packages: with python313Packages; [
-        iwlib
+      # Must be 3.12 in line with latest qtile
+      extraPackages = python313Packages: with pkgs.unstable.python313Packages; [
+        qtile-extras
+        # iwlib
+        # (qtile-extras.overrideAttrs (old: {
+        # }))
       ];
     };
 

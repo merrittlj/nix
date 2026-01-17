@@ -169,15 +169,15 @@
     "qtile-flake": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1754851568,
-        "narHash": "sha256-MdCXQQAy27bu3eu3snUnknRhZJ4ytPXAz9vV7M0vLRI=",
+        "lastModified": 1768056373,
+        "narHash": "sha256-LW3EsSu5QzITXeA9jg0yY7QGMYrQtll/yYckDQ8Ll7U=",
         "owner": "qtile",
         "repo": "qtile",
-        "rev": "bc936c88117a250d85f2ca19d9b07d65e5612bd7",
+        "rev": "59fb57ab0da81a52f1805fd7100fdd1d5a407dfd",
         "type": "github"
       },
       "original": {
