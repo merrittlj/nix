@@ -24,9 +24,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    code-insiders = {
+      url = "github:iosmanthus/code-insiders-flake";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, sops-nix, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, sops-nix, code-insiders, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "lucas";
@@ -44,6 +49,7 @@
 
           qtile = qtile-flake.packages.${final.system}.qtile;
         })
+        code-insiders.overlays.default
       ];
 
       helpers = import ./helpers.nix { lib = nixpkgs.lib; };

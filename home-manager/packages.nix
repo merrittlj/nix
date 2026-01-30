@@ -23,6 +23,4 @@
 
     slack
   ];
-
-  services.picom.enable = true;
 }

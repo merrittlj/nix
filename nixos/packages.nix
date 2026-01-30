@@ -61,6 +61,8 @@
 
     sops
     age
+
+    vscode-insiders
   ];
   
   fonts.packages = with pkgs; [

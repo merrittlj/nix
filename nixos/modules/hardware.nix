@@ -68,9 +68,17 @@
     };
 
     desktop = {
-      open = true;
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   }.${host};
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.opengl.enable = true;
 
   fileSystems = {
     "/" = {
