@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    qtile-flake = {
-      url = "github:qtile/qtile";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +26,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, qtile-flake, sops-nix, code-insiders, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, nixvim, sops-nix, code-insiders, ... }@inputs:
     let
       system = "x86_64-linux";
       username = "lucas";
@@ -46,8 +41,6 @@
               android_sdk.accept_license = true;
             };
           };
-
-          qtile = qtile-flake.packages.${final.system}.qtile;
         })
         code-insiders.overlays.default
       ];
@@ -77,7 +70,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.${username} = ./home-manager/default.nix;
               home-manager.extraSpecialArgs = {
-                inherit host username hostname helpers nixvim;
+                inherit host username hostname helpers nixvim sops-nix;
               };
             }
           ];

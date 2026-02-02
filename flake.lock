@@ -186,26 +186,6 @@
         "type": "github"
       }
     },
-    "qtile-flake": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1768056373,
-        "narHash": "sha256-LW3EsSu5QzITXeA9jg0yY7QGMYrQtll/yYckDQ8Ll7U=",
-        "owner": "qtile",
-        "repo": "qtile",
-        "rev": "59fb57ab0da81a52f1805fd7100fdd1d5a407dfd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "qtile",
-        "repo": "qtile",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "code-insiders": "code-insiders",
@@ -213,7 +193,6 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
-        "qtile-flake": "qtile-flake",
         "sops-nix": "sops-nix"
       }
     },

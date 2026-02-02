@@ -37,14 +37,6 @@
     feh
     maim
 
-    # Xorg
-    xclip
-    xorg.xdpyinfo
-    xorg.xkill
-    autorandr
-    lightdm
-    qtile
-
     # Overlays
     wh
     gp

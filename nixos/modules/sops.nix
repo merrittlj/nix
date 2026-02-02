@@ -2,21 +2,12 @@
 let
   sopsFile = ../../secrets/secrets.yaml;
   format = "yaml";
-  owner = config.users.users.lucas.name;
+  me = config.users.users.lucas;
+  owner = me.name;
 
-  startSSHAgents = pkgs.writeScript "start-ssh-agents.sh" ''
+  keyringScript = pkgs.writeShellScriptBin "sops-keyring-script" ''
     #!/bin/sh
-
-    # Work agent
-    eval "$(${pkgs.openssh}/bin/ssh-agent -a /run/user/1000/ssh-agent-work.sock)"
-    ${pkgs.openssh}/bin/ssh-add /run/secrets/ssh_key/andesite_git
-
-    # Personal agent
-    eval "$(${pkgs.openssh}/bin/ssh-agent -a /run/user/1000/ssh-agent-personal.sock)"
-    ${pkgs.openssh}/bin/ssh-add /run/secrets/ssh_key/personal_git
-
-    # Keep the service alive
-    exec sleep infinity
+    ${pkgs.gnupg}/bin/gpg --import ${config.sops.secrets."gpg_key/andesite_git".path}
   '';
 in {
   sops = {
@@ -32,22 +23,13 @@ in {
     };
   };
 
-  systemd.user.services.importGPGKey = {
-    description = "Import GPG key from sops-nix secrets";
-    after = [ "network.target" ];
-    serviceConfig.ExecStart = ''
-      gpg --batch --import ${config.sops.secrets."gpg_key/andesite_git".path}
-    '';
-    wantedBy = [ "default.target" ];
-  };
+  systemd.user.services.sops-keyring = {
+    description = "Load SOPS secrets into GNOME Keyring";
+    after = [ "graphical-session.target" ];
 
-  # programs.ssh.startAgent = true;
-  systemd.user.services.sshAgents = {
-    description = "SSH agents for work and personal";
     serviceConfig = {
-      Type = "simple";
-      ExecStart = "${startSSHAgents}";
+      ExecStart = "${keyringScript}/bin/sops-keyring-script";
     };
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "graphical-session.target" ];
   };
 }

@@ -1,6 +1,6 @@
 {
   services.libinput = {
-    enable = true;
+    enable = false;
     touchpad = {
       tapping = false;
       naturalScrolling = true;

@@ -38,33 +38,10 @@
     };
   }.${host}; 
 
-  systemd.services = {
-    laptop = {
-      poweroff-nvidia = {
-        description = "Power off NVIDIA dGPU after Intel iGPU takeover";
-        after = ["graphical.target"]; # Wait until graphics is up
-        wantedBy = ["graphical.target"];
-        serviceConfig.Type = "oneshot";
-      };
-
-      set-bridge-control = {
-        description = "Set proper PCI bridge control to keep backlight working with NVIDIA dGPU disabled";
-        after = ["graphical.target"]; # Wait until graphics is up
-        wantedBy = ["graphical.target"];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${pkgs.pciutils}/bin/setpci -v -H1 -s 00:01.00 BRIDGE_CONTROL=0";
-        };
-      };
-    };
-
-    desktop = {};
-  }.${host};
-  
-
   hardware.nvidia = {
     laptop = {
-      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+      modesetting.enable = false;
+      powerManagement.enable = false;
     };
 
     desktop = {
@@ -76,9 +53,8 @@
     };
   }.${host};
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.opengl.enable = true;
+  services.xserver.videoDrivers = { laptop = [ "intel" ]; desktop = [ "nvidia" ]; }.${host};
+  environment.variables = { laptop = { GSK_RENDERER = "gl"; }; desktop = {}; }.${host};
 
   fileSystems = {
     "/" = {

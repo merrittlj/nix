@@ -8,11 +8,6 @@ let
   linksrc =
     destination: source:
     { ${destination}.source = link source; };
-
-  # link each file in qtile/... avoid issues linking the entire dir
-  qtileFiles = lib.mapAttrs' (
-      name: _: lib.nameValuePair "qtile/${name}" { source = link ./src/qtile/${name}; }
-  ) (lib.filterAttrs (_: type: type == "regular") (builtins.readDir ./src/qtile));
 in {
   imports = [
     ./packages.nix
@@ -25,8 +20,4 @@ in {
   	homeDirectory = "/home/${username}";
   	stateVersion = "24.05";
   };
-  xdg.configFile = 
-    qtileFiles
-    // (linksrc "qtile/host.py" ./src/qtile_${host}.py)
-    // (linksrc "fcitx5" ./src/fcitx);
 }

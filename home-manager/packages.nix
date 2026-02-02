@@ -4,7 +4,6 @@
     kicad-small
     nitrogen
     gimp
-    kdePackages.okular
     hugo
     cura-appimage
 
@@ -17,9 +16,6 @@
 
     fishPlugins.grc
     grc
-
-    pywal
-    colorz
 
     slack
   ];
