@@ -31,14 +31,6 @@ in
       edge-tiling = true;
       color-scheme = "default";
       accent-color = "blue";
-      favorite-apps = [
-        "firefox.desktop" 
-        "org.gnome.Console.desktop" 
-        "code-insiders.desktop" 
-        "org.gnome.Nautilus.desktop" 
-        "slack.desktop" 
-        "org.gnome.Settings.desktop" 
-      ];
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
@@ -53,6 +45,15 @@ in
       disable-user-extensions = false;
 
       enabled-extensions = (map (extension: extension.extensionUuid) gnomeExtensions);
+
+      favorite-apps = [
+        "firefox.desktop" 
+        "org.gnome.Console.desktop" 
+        "code-insiders.desktop" 
+        "org.gnome.Nautilus.desktop" 
+        "slack.desktop" 
+        "org.gnome.Settings.desktop" 
+      ];
     };
 
     "org/gnome/shell/extensions/windowgestures" = {
@@ -60,6 +61,8 @@ in
       swipe4-left = 1; # minimize window
       swipe4-right = 2; # close window
       fn-move-snap = false; # no snap on moving
+      swipe3-left = 0; # disable
+      swipe3-right = 0; # disable
     };
   };
 
