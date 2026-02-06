@@ -19,6 +19,8 @@
             commit.gpgSign = true;
             tag.gpgSign = true;
             gpg.format = "openpgp";
+
+            url."git@github.com-work:".insteadOf = "git@github.com:";
           };
         }
       ];
@@ -26,6 +28,5 @@
 
   programs.gh = {
     enable = false;
-	# gitCredentialHelper.enable = true;
   };
 }
