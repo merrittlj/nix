@@ -18,5 +18,7 @@
     grc
 
     slack
+    spotify
+    libreoffice
   ];
 }

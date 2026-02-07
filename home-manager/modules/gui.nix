@@ -64,6 +64,10 @@ in
       swipe3-left = 0; # disable
       swipe3-right = 0; # disable
     };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = 0; # "blank screen delay": never
+    };
   };
 
   home.packages = gnomeExtensions;
