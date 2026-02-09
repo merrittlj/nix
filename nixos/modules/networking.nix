@@ -1,5 +1,5 @@
 {
   networking.firewall = {
-    enable = false;
+    enable = true;
   };
 }
