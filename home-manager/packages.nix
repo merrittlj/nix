@@ -20,5 +20,7 @@
     slack
     spotify
     libreoffice
+
+    apostrophe
   ];
 }
