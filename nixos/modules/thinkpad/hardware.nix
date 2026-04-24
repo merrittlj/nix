@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  # ThinkPad-specific hardware configuration
-  # Adjust based on your specific ThinkPad model
-
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
@@ -13,12 +10,11 @@
     extraModulePackages = [ ];
   };
 
-  # Most ThinkPads use Intel graphics
   services.xserver.videoDrivers = [ "modesetting" ];
 
   environment.variables = { };
 
-  console.keyMap = "us";
+  console.keyMap = "dvorak-programmer";
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

@@ -22,6 +22,17 @@
     libreoffice
 
     apostrophe
+    curtail
+    gnome-decoder
+    fragments
+    gradia
+    impression
+    keypunch
+    polari
+    resources
+    gnome-sudoku
+    gnome-2048
+
     kdePackages.k3b
     vlc
     discord
