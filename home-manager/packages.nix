@@ -22,5 +22,8 @@
     libreoffice
 
     apostrophe
+    kdePackages.k3b
+    vlc
+    discord
   ];
 }

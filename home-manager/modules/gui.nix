@@ -68,6 +68,10 @@ in
     "org/gnome/desktop/session" = {
       idle-delay = 0; # "blank screen delay": never
     };
+
+    "org/gnome/mutter" = {
+      workspaces-only-on-primary = false; # workspaces on second monitor
+    };
   };
 
   home.packages = gnomeExtensions;
