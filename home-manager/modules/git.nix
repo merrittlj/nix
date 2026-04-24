@@ -22,8 +22,19 @@
 
             url."git@github.com-work:".insteadOf = "git@github.com:";
           };
+
+          
         }
       ];
+
+    extraConfig = {
+      safe = {
+        directory = [
+          "/etc/nixos"
+          "/home/lucas/nix"
+        ];
+      };
+    };
   };
 
   programs.gh = {

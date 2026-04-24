@@ -36,7 +36,7 @@
   console = {
     earlySetup = true;
     useXkbConfig = true;
-    keyMap = "dvorak-programmer";
+    # keyMap = "dvorak-programmer";
   };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

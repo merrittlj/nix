@@ -15,7 +15,7 @@
   console = {
     earlySetup = true;
     useXkbConfig = true;
-    keyMap = "dvorak-programmer";
+    # keyMap = "dvorak-programmer";
   };
 
   # hardware.cpu.intel.npu.enable = true;
