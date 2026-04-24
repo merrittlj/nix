@@ -4,22 +4,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXROOT";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-label/NIXBOOT";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-label/NIXSWAP"; }
-  ];
+  
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
