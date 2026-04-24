@@ -14,7 +14,7 @@
 
   console.keyMap = "dvorak-programmer";
 
-  hardware.cpu.intel.npu.enable = true;
+  # hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.enableAllFirmware = true;
