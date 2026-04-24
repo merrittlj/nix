@@ -8,7 +8,7 @@
       d = "doas";
       v = "nvim";
       p = "python";
-      rb = "doas nixos-rebuild switch --flake $FLAKE_PATH#${host}";
+      rb = "doas nixos-rebuild switch --flake path:$FLAKE_PATH#${host}";
       ihatejava = "_JAVA_AWT_WM_NONREPARENTING=1";
     };
 

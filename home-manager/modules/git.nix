@@ -26,15 +26,6 @@
           
         }
       ];
-
-    extraConfig = {
-      safe = {
-        directory = [
-          "/etc/nixos"
-          "/home/lucas/nix"
-        ];
-      };
-    };
   };
 
   programs.gh = {
