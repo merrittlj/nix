@@ -9,10 +9,12 @@
   };
 
   boot.extraModprobeConfig = { 
-    laptop = ''
+    macbook = ''
       options snd-hda-intel model=imac27_122
     '';
 
     desktop = '''';
+
+    thinkpad = '''';
   }.${host};
 }

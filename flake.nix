@@ -78,7 +78,8 @@
     in {
       nixosConfigurations = {
         desktop = mkHost "desktop" "pluto"; 
-        laptop = mkHost "laptop" "saturn";
+        macbook = mkHost "macbook" "saturn";
+        thinkpad = mkHost "thinkpad" "thunk";
       };
     };
 }

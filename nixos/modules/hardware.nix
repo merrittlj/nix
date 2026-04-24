@@ -1,60 +1,8 @@
-{ config, lib, pkgs, modulesPath, host, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports = [ 
+  imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot = {
-    laptop = {
-      initrd = {
-        availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
-        kernelModules = [ "wl" ]; 
-      };
-
-      kernelModules = [ "kvm-intel" "wl" ]; 
-      extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ]; 
-      blacklistedKernelModules = [ "b43" "ssb" "brcmfmac" "brcmsmac" "bcma" "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ]; 
-
-      extraModprobeConfig = ''
-        blacklist nouveau
-        options nouveau modeset=0
-      '';
-
-      # FOR PROPER BACKLIGHT:
-      # do not set acpi_backlight or similar kernel params
-      # do not disable apple_gmux kernel module
-      # /sys/class/backlight should just be gmux_backlight
-      # setpci -v -H1 -s 00:01.00 BRIDGE_CONTROL=0
-    };
-
-    desktop = {
-      initrd = {
-        availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-        kernelModules = [ ];
-      };
-
-      kernelModules = [ "kvm-amd" ];
-      extraModulePackages = [ ];
-    };
-  }.${host}; 
-
-  hardware.nvidia = {
-    laptop = {
-      modesetting.enable = false;
-      powerManagement.enable = false;
-    };
-
-    desktop = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-  }.${host};
-
-  services.xserver.videoDrivers = { laptop = [ "intel" ]; desktop = [ "nvidia" ]; }.${host};
-  environment.variables = { laptop = { GSK_RENDERER = "gl"; }; desktop = {}; }.${host};
 
   fileSystems = {
     "/" = {
@@ -82,9 +30,4 @@
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu."${{laptop = "intel"; desktop = "amd"; }.${host}}".updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  console.keyMap = { laptop = "dvorak-programmer"; desktop = "us"; }.${host};
-
-  hardware.enableAllFirmware = { laptop = true; desktop = false; }.${host};
 }

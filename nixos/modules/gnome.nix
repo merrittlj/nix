@@ -1,4 +1,4 @@
-{ pkgs, config, host, ...}: {
+{ pkgs, config, ...}: {
   services.xserver = {
     enable = true;
 
@@ -8,8 +8,6 @@
     };
 
     desktopManager.gnome.enable = true;
-
-    dpi = { laptop = 192; desktop = 80; }.${host} or 80;
   };
 
   environment.gnome.excludePackages = (with pkgs; [

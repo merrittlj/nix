@@ -8,7 +8,7 @@
       sortKey = "_z_nixos";
 
       extraEntries = {
-        laptop = {
+        macbook = {
           "macos_opencore.conf" = ''
             title macOS-OpenCore
             efi /EFI/OC/OpenCore.efi
