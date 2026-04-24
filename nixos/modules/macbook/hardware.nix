@@ -33,7 +33,11 @@
     GSK_RENDERER = "gl";
   };
 
-  console.keyMap = "dvorak-programmer";
+  console = {
+    earlySetup = true;
+    useXkbConfig = true;
+    keyMap = "dvorak-programmer";
+  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
