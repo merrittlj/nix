@@ -2,7 +2,7 @@
 {
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
 
@@ -10,12 +10,11 @@
     extraModulePackages = [ ];
   };
 
-  services.xserver.videoDrivers = [ "modesetting" ];
-
   environment.variables = { };
 
   console.keyMap = "dvorak-programmer";
 
+  hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.enableAllFirmware = true;
