@@ -1,4 +1,4 @@
-{ inputs, hostname, host, helpers, ... }:
+{ pkgs, inputs, hostname, host, helpers, ... }:
 {
   imports = [
     ./packages.nix
@@ -15,4 +15,6 @@
 
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }
