@@ -55,7 +55,23 @@ in
     "org/gnome/mutter" = {
       workspaces-only-on-primary = false; # workspaces on second monitor
     };
+
+    "org/gnome/system/default-applications/browser" = {
+      exec = "firefox";
+    };
   };
 
   home.packages = gnomeExtensions;
+
+  xdg.mime.enable = true;
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+  };
 }

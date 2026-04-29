@@ -11,7 +11,7 @@
 
     "org/gnome/desktop/interface" = {
       enable-hot-corners = true;
-      text-scaling-factor = 1.5;
+      text-scaling-factor = 1.25;
     };
   };
 }

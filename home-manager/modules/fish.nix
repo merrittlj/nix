@@ -19,6 +19,10 @@
       set -gx EDITOR nvim
       set FLAKE_PATH "/home/$(whoami)/nix"
       set WALLPAPERS_PATH "/home/$(whoami)/wallpapers"
+
+      if not gpg --list-secret-keys EA01AEDB989800FC &>/dev/null
+        gpg --batch --pinentry-mode loopback --import /run/secrets/gpg_key/andesite_git 2>/dev/null
+      end
     '';
 
     functions = {

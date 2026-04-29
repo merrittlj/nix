@@ -36,4 +36,5 @@
   ];
 
   services.gnome.gnome-keyring.enable = true;
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 }
